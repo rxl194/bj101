@@ -1,11 +1,11 @@
-var users = require('../../app/controllers/users.server.controller');
+var users = require('../../app/controllers/ys_users.server.controller');
 
 module.exports = function(app) {
-  app.route('/users')
+  app.route('/ys/users')
     .post(users.create)
     .get(users.list);
 
-  app.route('/users/:userId')
+  app.route('/ys/users/:userId')
      .get(users.read);
 
   app.param('userId', users.userByID);

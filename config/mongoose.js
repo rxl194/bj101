@@ -17,7 +17,7 @@ module.exports = function() {
   //  console.log('mongodb connected');
   //});
 
-  require('../app/models/user.server.model');
+  require('../app/models/ys_user.server.model');
 
   return db;
 };
