@@ -34,32 +34,32 @@ module.exports = function(app) {
 	   }));
 
 	// Set up the Facebook OAuth routes 
-	app.get('/oauth/facebook', passport.authenticate('facebook', {
+	app.get('/auth/facebook', passport.authenticate('facebook', {
 		failureRedirect: '/ys/signin'
 	}));
-	app.get('/oauth/facebook/callback', passport.authenticate('facebook', {
+	app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 		failureRedirect: '/ys/signin',
 		successRedirect: '/'
 	}));
 
 	// Set up the Twitter OAuth routes 
-	app.get('/oauth/twitter', passport.authenticate('twitter', {
+	app.get('/auth/twitter', passport.authenticate('twitter', {
 		failureRedirect: '/ys/signin'
 	}));
-	app.get('/oauth/twitter/callback', passport.authenticate('twitter', {
+	app.get('/auth/twitter/callback', passport.authenticate('twitter', {
 		failureRedirect: '/ys/signin',
 		successRedirect: '/'
 	}));
 
 	// Set up the Google OAuth routes 
-	app.get('/oauth/google', passport.authenticate('google', {
+	app.get('/auth/google', passport.authenticate('google', {
 		scope: [
 			'https://www.googleapis.com/auth/userinfo.profile',
 			'https://www.googleapis.com/auth/userinfo.email'
 		],
 		failureRedirect: '/ys/signin'
 	}));
-	app.get('/oauth/google/callback', passport.authenticate('google', {
+	app.get('/auth/google/callback', passport.authenticate('google', {
 		failureRedirect: '/ys/signin',
 		successRedirect: '/'
 	}));
