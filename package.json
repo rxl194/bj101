@@ -8,6 +8,7 @@
     "compression": "~1.6.0",
     "body-parser": "~1.14.2",
     "method-override": "~2.3.5",
-    "ejs": "~2.3.4"
+    "ejs": "~2.3.4",
+    "express-session": "~1.13.0"
   }
 }
