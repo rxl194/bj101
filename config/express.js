@@ -50,8 +50,8 @@ module.exports = function() {
 	app.use(passport.session());
 
 	// Load the routing files
-	require('../app/routes/index.server.routes.js')(app);
-	require('../app/routes/ys_users.server.routes.js')(app);
+	require('../app/routes/index.routes.js')(app);
+	require('../app/routes/ys/ys_users.routes.js')(app);
 
 	// Configure static file serving
 	app.use(express.static('./public'));

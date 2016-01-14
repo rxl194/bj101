@@ -6,7 +6,7 @@ var passport = require('passport'),
 	url = require('url'),
 	GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
 	config = require('../config'),
-	users = require('../../app/controllers/ys_users.server.controller');
+	users = require('../../app/controllers/ys/ys_users.controller');
 
 // Create the Google strategy configuration method
 module.exports = function() {

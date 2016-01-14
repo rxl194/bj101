@@ -2,7 +2,7 @@
 'use strict';
 
 // Load the module dependencies
-var users = require('../../app/controllers/ys_users.server.controller'),
+var users = require('../../controllers/ys/ys_users.controller'),
 	passport = require('passport');
 
 // Define the routes module' method

@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    var index = require('../controllers/index.server.controller');
+    var index = require('../controllers/index.controller');
     app.get('/', index.render);
 };
 
