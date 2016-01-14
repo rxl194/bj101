@@ -27,6 +27,18 @@ var twitter_callback_url =
   process.env.TWITTER_CALLBACK_URL ||
   "http://localhost:3000/auth/twitter/callback"
 
+var google_client_id =
+  process.env.GOOGLE_CLIENT_ID || 
+  'Google Application Id';
+
+var google_client_secret = 
+  process.env.GOOGLE_CLIENT_SECRET ||
+  'Google Application Secret';
+
+var google_callback_url =
+  process.env.GOOGLE_CALLBACK_URL ||
+  "http://localhost:3000/auth/google/callback"
+
 module.exports = {
   // Development configuration options
   db: urihost + '/mean-book',
@@ -42,9 +54,9 @@ module.exports = {
     callbackURL: twitter_callback_url
 	},
   google: {
-    clientID: 'Application Id',
-    clientSecret: 'Application Secret',
-    callbackURL: 'http://localhost:3000/auth/google/callback'
+    clientID: google_client_id,
+    clientSecret: google_client_secret,
+    callbackURL: google_callback_url
   }
 };
 
