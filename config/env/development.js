@@ -3,11 +3,11 @@ var urihost =
   process.env.MONGOHQ_URL || 
   'mongodb://localhost';
 
-var facebook_id =
-  process.env.FACEBOOK_ID || 
+var facebook_client_id =
+  process.env.FACEBOOK_CLIENT_ID || 
   'Facebook Application Id';
 
-var facebook_secret = 
+var facebook_client_secret = 
   process.env.FACEBOOK_CLIENT_SECRET ||
   'Facebook Application Secret';
 
@@ -15,19 +15,31 @@ var facebook_callback_url =
   process.env.FACEBOOK_CALLBACK_URL ||
   "http://localhost:3000/auth/facebook/callback"
 
+var twitter_client_id =
+  process.env.TWITTER_CLIENT_ID || 
+  'Twitter Application Id';
+
+var twitter_client_secret = 
+  process.env.TWITTER_CLIENT_SECRET ||
+  'Twitter Application Secret';
+
+var twitter_callback_url =
+  process.env.TWITTER_CALLBACK_URL ||
+  "http://localhost:3000/auth/twitter/callback"
+
 module.exports = {
   // Development configuration options
   db: urihost + '/mean-book',
   sessionSecret: 'developmentSessiionSecrt',
   facebook: {
-    clientID: facebook_id,
-    clientSecret: facebook_secret,
+    clientID: facebook_client_id,
+    clientSecret: facebook_client_secret,
     callbackURL: facebook_callback_url
   },
   twitter: {
-    clientID: 'FsLl4XeciuVjLA6fFPCsB9TAz',
-    clientSecret: 'gce6rLbYFgQ4wBC3Y59TYlPuG3HFAIT0k9G661vl82FXinWCCs',
-    callbackURL: 'http://localhost:3000/auth/twitter/callback'
+    clientID: twitter_client_id,
+    clientSecret: twitter_client_secret,
+    callbackURL: twitter_callback_url
 	},
   google: {
     clientID: 'Application Id',
