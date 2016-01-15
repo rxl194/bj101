@@ -33,7 +33,7 @@ var productSchema = {
       }
     }
   },
-  category: Category.categorySchema,
+  category: Category.Schema,
   internal: {
     approximatePriceUSD: Number
   }
@@ -58,12 +58,11 @@ ProductSchema.virtual('displayPrice').get(function() {
     '' + this.price.amount;
 });
 
-schema.set('toObject', { virtuals: true });
-schema.set('toJSON', { virtuals: true });
+ProductSchema.set('toObject', { virtuals: true });
+ProductSchema.set('toJSON', { virtuals: true });
 
-module.exports.ProductSchema = ProductSchema;
-module.exports.productSchema = productSchema;
+exports.Schema = productSchema;
 
 // Create the 'ecProduct' model out of the 'ProductSchema'
-mongoose.model('ecProduct', ProductSchema);
+exports.Model = mongoose.model('ecProduct', ProductSchema);
 

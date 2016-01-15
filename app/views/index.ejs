@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:ng="http://angularjs.org">
 <head>
 	<!-- Use the 'title' property to render a page title  -->
 	<title><%= title %></title>
@@ -15,7 +15,22 @@
 	<% } %>
 	<br>
 
+	<!-- Render AngularJS views  -->
+	<section ng-view></section>
+
 	<!-- Load the static image file  -->
 	<img src="img/logo.png" alt="Logo">
+
+	<!-- Load local libraries -->
+	<script type="text/javascript" src="/lib/angular/angular.js"></script>
+	<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+
+	<!-- Load the example module -->
+	<script type="text/javascript" src="/example/example.client.module.js"></script>
+	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
+	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
+	<!-- Bootstrap AngularJS application -->
+	<script type="text/javascript" src="/application.js"></script>
 </body>
 </html>

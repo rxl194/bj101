@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 // Define a new 'UserSchema'
-var UserSchema = new Schema({
+var userSchema = {
 	firstName: String,
 	lastName: String,
 	email: {
@@ -48,7 +48,8 @@ var UserSchema = new Schema({
 		// Create a default 'created' value
 		default: Date.now
 	}
-});
+};
+var UserSchema = new Schema(userSchema);
 
 // Set the 'fullname' virtual property
 UserSchema.virtual('fullName').get(function() {
@@ -110,6 +111,8 @@ UserSchema.set('toJSON', {
 	virtuals: true
 });
 
+exports.Schema = userSchema;
+
 // Create the 'User' model out of the 'UserSchema'
-mongoose.model('ysUser', UserSchema);
+exports.Model = mongoose.model('ysUser', UserSchema);
 

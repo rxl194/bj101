@@ -18,9 +18,8 @@ var categorySchema = {
 };
 var CategorySchema = new Schema(categorySchema);
 
-module.exports.CatetorySchema = CategorySchema;
-module.exports.categorySchema = categorySchema;
+exports.Schema = categorySchema;
 
 // Create the 'ecCategory' model out of the 'CategorySchema'
-mongoose.model('ecCategory', CategorySchema);
+exports.Model = mongoose.model('ecCategory', CategorySchema);
 
