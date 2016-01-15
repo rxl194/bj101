@@ -5,7 +5,7 @@
 var mainApplicationModuleName = 'bj101';
 
 // Create the main application
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngRoute', 'example']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngRoute', 'cys_users', 'example']);
 
 // Configure the hashbang URLs using the $locationProvider services 
 mainApplicationModule.config(['$locationProvider',

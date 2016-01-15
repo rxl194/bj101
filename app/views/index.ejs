@@ -5,9 +5,8 @@
 	<title><%= title %></title>
 </head>
 <body>
-	<!-- If a user is authenticated, display the user's full name , otherwise display the authentication links -->
-	<% if ( userFullName ) { %>
-		<h2>Hello <%=userFullName%> </h2> 
+	<!-- If a user is not authenticated, display the authentication links -->
+	<% if (cys_user) { %>
 		<a href="/ys/signout">Sign out</a>
 	<% } else { %>
 		<a href="/ys/signup">Signup</a>
@@ -17,6 +16,11 @@
 
 	<!-- Render AngularJS views  -->
 	<section ng-view></section>
+
+	<!-- Render the user object -->
+	<script type="text/javascript">
+		window.cys_user = <%- cys_user || 'null' %>;
+	</script>
 
 	<!-- Load the static image file  -->
 	<img src="img/logo.png" alt="Logo">
@@ -29,6 +33,10 @@
 	<script type="text/javascript" src="/example/example.client.module.js"></script>
 	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
 	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
+
+	<!-- Load the users module -->
+	<script type="text/javascript" src="/cys/users/cys_users.module.js"></script>
+	<script type="text/javascript" src="/cys/users/services/authentication.client.service.js"></script>
 
 	<!-- Bootstrap AngularJS application -->
 	<script type="text/javascript" src="/application.js"></script>
