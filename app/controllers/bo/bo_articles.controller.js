@@ -128,3 +128,4 @@ exports.hasAuthorization = function(req, res, next) {
 	// Call the next middleware
 	next();
 };
+
