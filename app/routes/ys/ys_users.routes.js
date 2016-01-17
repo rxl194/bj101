@@ -33,6 +33,9 @@ module.exports = function(app) {
 			failureFlash: true
 	   }));
 
+	// Set up the 'signout' route
+	app.get('/ys/signout', users.signout);
+
 	// Set up the Facebook OAuth routes 
 	app.get('/auth/facebook', passport.authenticate('facebook', {
 		failureRedirect: '/ys/signin'
@@ -64,7 +67,5 @@ module.exports = function(app) {
 		successRedirect: '/'
 	}));
 
-	// Set up the 'signout' route
-	app.get('/ys/signout', users.signout);
 };
 
