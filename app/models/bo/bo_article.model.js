@@ -24,7 +24,7 @@ var articleSchema = {
 	},
 	creator: {
 		type: Schema.ObjectId,
-		ref: 'cysUser'
+		ref: 'ysUser'
 	}
 };
 var ArticleSchema = new Schema(articleSchema);

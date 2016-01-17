@@ -5,7 +5,7 @@
 angular.module('cys_users').factory('Authentication', [
 	function() {
 		// Use the rendered user object
-		this.user = window.cys_user;
+		this.user = window.user;
 
 		// Return the authenticated user data
 		return {

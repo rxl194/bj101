@@ -30,3 +30,4 @@ module.exports = function() {
 	require('./strategies/facebook.js')();
 	require('./strategies/google.js')();
 };
+
