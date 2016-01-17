@@ -3,3 +3,4 @@
 
 // Create the 'cbo_articles' module
 angular.module('cbo_articles', []);
+
