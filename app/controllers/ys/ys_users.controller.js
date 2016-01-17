@@ -97,7 +97,7 @@ exports.renderSignin = function(req, res, next) {
 	// If user is not connected render the signin page, otherwise redirect the user back to the main application page
 	if (!req.user) {
 		// Use the 'response' object to render the signin page
-		res.render('signin', {
+		res.render('ys/signin', {
 			// Set the page title variable
 			title: 'Sign-in Form',
 			// Set the flash message variable
@@ -113,7 +113,7 @@ exports.renderSignup = function(req, res, next) {
 	// If user is not connected render the signup page, otherwise redirect the user back to the main application page
 	if (!req.user) {
 		// Use the 'response' object to render the signup page
-		res.render('signup', {
+		res.render('ys/signup', {
 			// Set the page title variable
 			title: 'Sign-up Form',
 			// Set the flash message variable
