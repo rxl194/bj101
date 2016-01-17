@@ -12,3 +12,4 @@ angular.module('cbo_articles').factory('cboArticles', ['$resource', function($re
         }
     });
 }]);
+

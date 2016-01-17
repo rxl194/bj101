@@ -44,7 +44,7 @@ angular.module('cbo_articles').controller('cboArticlesController', ['$scope', '$
         	// Use the article '$update' method to send an appropriate PUT request
             $scope.article.$update(function() {
             	// If an article was updated successfully, redirect the user to the article's page 
-                $location.path('articles/' + $scope.article._id);
+                $location.path('bo/articles/' + $scope.article._id);
             }, function(errorResponse) {
             	// Otherwise, present the user with the error message
                 $scope.error = errorResponse.data.message;
@@ -67,9 +67,10 @@ angular.module('cbo_articles').controller('cboArticlesController', ['$scope', '$
             } else {
             	// Otherwise, use the article '$remove' method to delete the article
                 $scope.article.$remove(function() {
-                    $location.path('articles');
+                    $location.path('bo/articles');
                 });
             }
         };
     }
 ]);
+

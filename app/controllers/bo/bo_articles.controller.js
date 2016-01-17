@@ -22,7 +22,7 @@ exports.create = function(req, res) {
 	var article = new Article(req.body);
 
 	// Set the article's 'creator' property
-	article.creator = req.cys_user;
+	article.creator = req.user;
 
 	// Try saving the article
 	article.save(function(err) {
