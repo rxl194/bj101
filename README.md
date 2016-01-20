@@ -11,3 +11,7 @@ book1: MEAN Web Development, By: Amos Q. Haviv, Publisher: Packt Publishing, Pub
 
 # end -- mongodb setup
 
+# npm install -g
+  npm install -g mocha
+# end npm install -g
+
