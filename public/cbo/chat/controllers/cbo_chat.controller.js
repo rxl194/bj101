@@ -2,7 +2,7 @@
 'use strict';
 
 // Create the 'chat' controller
-angular.module('cbo_chat').controller('cboChatController', ['$scope', 'Socket',
+angular.module('cbo_chat').controller('cboChatController', ['$scope', 'cboChatSocket',
 function($scope, Socket) {
 
   // Create a messages array
