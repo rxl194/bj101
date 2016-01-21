@@ -16,7 +16,7 @@ var facebook_client_secret =
 
 var facebook_callback_url =
   process.env.FACEBOOK_CALLBACK_URL ||
-  "http://localhost:3000/auth/facebook/callback"
+  "http://localhost:3000/auth/facebook/callback";
 
 var twitter_client_id =
   process.env.TWITTER_CLIENT_ID || 
@@ -28,7 +28,7 @@ var twitter_client_secret =
 
 var twitter_callback_url =
   process.env.TWITTER_CALLBACK_URL ||
-  "http://localhost:3000/auth/twitter/callback"
+  "http://localhost:3000/auth/twitter/callback";
 
 var google_client_id =
   process.env.GOOGLE_CLIENT_ID || 
@@ -40,7 +40,7 @@ var google_client_secret =
 
 var google_callback_url =
   process.env.GOOGLE_CALLBACK_URL ||
-  "http://localhost:3000/auth/google/callback"
+  "http://localhost:3000/auth/google/callback";
 
 // Set the 'test' environment configuration object
 module.exports = {

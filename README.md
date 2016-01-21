@@ -11,12 +11,19 @@ book1: MEAN Web Development, By: Amos Q. Haviv, Publisher: Packt Publishing, Pub
 
 # end -- mongodb setup
 
+# karma
+sudo npm install -g karma-cli
+$ NODE_ENV=test karma start
+# karma
+
 # npm install -g
   npm install -g mocha
   npm install -g karma-cli
+  npm install -g grunt-cli
 
   npm install -g protractor
   sudo webdriver-manager update
+  node_modules/protractor/bin/webdriver-manager update
 
 # end npm install -g
 

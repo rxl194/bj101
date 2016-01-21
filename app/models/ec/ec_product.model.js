@@ -3,7 +3,7 @@
 
 var mongoose = require('mongoose'),
   Category = require('./ec_category.model'),
-  fx = require('../ut/ut_fx.util');
+  fx = require('../ut/ut_fx.util'),
   Schema = mongoose.Schema;
 
 // Define a new 'ProductSchema'

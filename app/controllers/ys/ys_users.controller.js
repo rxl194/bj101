@@ -89,7 +89,7 @@ exports.delete = function(req, res, next) {
     } else {
       res.json(req.user);
     }
-  })
+  });
 };
 
 // Create a new controller method that renders the signin page
