@@ -14,5 +14,9 @@ book1: MEAN Web Development, By: Amos Q. Haviv, Publisher: Packt Publishing, Pub
 # npm install -g
   npm install -g mocha
   npm install -g karma-cli
+
+  npm install -g protractor
+  sudo webdriver-manager update
+
 # end npm install -g
 
