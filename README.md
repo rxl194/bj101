@@ -1,5 +1,6 @@
 # bj101
 # Reference
+# cex/meanbook
 book1: MEAN Web Development, By: Amos Q. Haviv, Publisher: Packt Publishing, Pub. Date: September 25, 2014
 
 # mongodb setup
