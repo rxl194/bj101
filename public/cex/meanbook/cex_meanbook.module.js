@@ -2,5 +2,5 @@
 'use strict';
 
 // Create the 'example' module
-angular.module('example', []);
+angular.module('cex_meanbook', []);
 
