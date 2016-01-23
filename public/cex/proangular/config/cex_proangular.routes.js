@@ -6,7 +6,7 @@ angular.module('cex_proangular').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
 		when('/', {
-			templateUrl: '/cex/proangular/views/cex_proangular.view.html'
+			templateUrl: '/coa/todolists/views/coa_todolists.view.html'
 		}).
 		otherwise({
 			redirectTo: '/'
