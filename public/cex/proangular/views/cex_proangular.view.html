@@ -8,13 +8,21 @@
 	<!-- Otherwise, show the user details and application links -->
 	<div data-ng-show="authentication.user">
     <div class="page-header">
-		  <h1><span data-ng-bind="authentication.user.fullName"></span>'s To Do List</h1>	
+		  <h1>
+        <span data-ng-bind="authentication.user.fullName"></span>'s To Do List
+        <span class="label label-default" ng-class="warningLevel()"
+              ng-hide="incompleteCount() == 0">
+          {{incompleteCount()}}
+        </span>
+      </h1>	
     </div>
     <div class="panel">
         <div class="input-group">
-            <input class="form-control" />
+            <input class="form-control" ng-model="actionText" />
             <span class="input-group-btn">
-                <button class="btn btn-default">Add</button>
+              <button class="btn btn-default"
+                      ng-click="addNewItem(actionText)">Add
+              </button>
             </span>
         </div>
         <table class="table table-striped">
@@ -25,12 +33,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Buy Flowers</td><td>No</td></tr>
-                <tr><td>Get Shoes</td><td>No</td></tr>
-                <tr><td>Collect Tickets</td><td>Yes</td></tr>
-                <tr><td>Call Joe</td><td>No</td></tr>
+              <tr ng-repeat="item in todo.items | cexProangularCheckedItems:showComplete | orderBy:'action'">
+                <td>{{item.action}}</td>
+                 <td><input type="checkbox" ng-model="item.done" /></td>                    
+                <td>{{item.done}}</td>
+              </tr>
             </tbody>
         </table>
+
+        <div class="checkbox-inline">
+          <label><input type="checkbox" ng_model="showComplete"> Show Complete</label>
+        </div>
+
     </div>
 		<a href="/ys/signout">Signout</a>
 	</div>
