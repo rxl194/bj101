@@ -16,6 +16,13 @@ book2: Pro AngularJS, By: Adam Freeman, Publisher: Apress,  Pub. Date: April 01,
 
 # end -- mongodb setup
 
+# npm/bower setup
+ sudo npm install -g bower
+ sudo ln -s /usr/bin/nodejs /usr/bin/node
+ npm install; bower install;
+ npm update; bower update;
+# end npm/bower setup
+
 # karma
 sudo npm install -g karma-cli
 $ NODE_ENV=test karma start
