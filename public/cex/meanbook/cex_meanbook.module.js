@@ -1,6 +1,6 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Create the 'example' module
+// Create the 'cex_meanbook' module
 angular.module('cex_meanbook', []);
 

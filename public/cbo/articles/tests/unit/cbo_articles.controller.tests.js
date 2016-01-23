@@ -8,8 +8,8 @@ describe('Testing Articles Controller', function() {
 
   // Define a pre-tests function
   beforeEach(function() {
-    // Load the 'bj101' module
-    module('bj101');
+    // Load the 'cex_meanbook_main' module
+    module('cex_meanbook_main');
 
     // Add a new Jasmine matcher
     jasmine.addMatchers({
