@@ -2,7 +2,7 @@
 'use strict';
 
 // Configure the 'cex_proangular' module routes
-angular.module('cex_proangular').config(['$routeProvider',
+angular.module('coa_todolists').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
 		when('/', {
