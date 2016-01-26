@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="item in todo.items | cexProangularCheckedItems:showComplete | orderBy:'action'">
+              <tr ng-repeat="item in todo.items | coaTodolistsCheckedItems:showComplete | orderBy:'action'">
                 <td>{{item.action}}</td>
                  <td><input type="checkbox" ng-model="item.done" /></td>                    
                 <td>{{item.done}}</td>

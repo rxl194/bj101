@@ -1,8 +1,8 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Create the 'cex_proangular' controller
-angular.module('cex_proangular').filter('cexProangularCheckedItems', function() {
+// Create the 'coa_todolists' filter
+angular.module('coa_todolists').filter('coaTodolistsCheckedItems', function() {
   return function(items, showComplete) {
     var resultArr = [];
     angular.forEach(items, function(item) {
