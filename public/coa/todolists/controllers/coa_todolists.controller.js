@@ -17,7 +17,6 @@ angular.module('coa_todolists').controller('coaTodolistsController', [
   function($scope,   Authentication, coaTodolists) {
     // Expose the authentication service
     $scope.authentication = Authentication;
-    // $scope.todo = window.model;
     $scope.todo = model;
 
     $scope.incompleteCount = function() {
