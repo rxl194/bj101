@@ -6,7 +6,7 @@ var mainApplicationModuleName = 'cex_proangular_sportsstore';
 
 // Create the main application
 var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'cys_users',
-  'csps_products', 'csps_store']);
+  'cutil_filters', 'csps_products', 'csps_store']);
 
 // Configure the hashbang URLs using the $locationProvider services 
 mainApplicationModule.config(['$locationProvider',
