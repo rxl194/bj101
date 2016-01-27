@@ -3,9 +3,10 @@
 
 // Create the 'csps_catprod' controller
 // For category and product list relationship
-angular.module('csps_store').controller('cspsCatProductController', 
-           ['$scope', '$filter', 
-  function($scope, $filter) {
+angular.module('csps_store')
+.constant("productListActiveClass", "btn-primary")
+.controller('cspsCatProductController', 
+  function($scope, $filter, productListActiveClass) {
 
     var selectedCategory = null;
 
@@ -18,6 +19,10 @@ angular.module('csps_store').controller('cspsCatProductController',
         product.category == selectedCategory;
     }
 
+    $scope.getCategoryClass = function (category) {
+      return selectedCategory == category ? productListActiveClass : "";
+    }
   }
-]);
+
+);
 
