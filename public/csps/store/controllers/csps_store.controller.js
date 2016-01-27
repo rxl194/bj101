@@ -2,7 +2,7 @@
 'use strict';
 
 // Create the 'csps_store' controller
-angular.module('csps_store').controller('cspsControllerController', 
+angular.module('csps_store').controller('cspsStoreController', 
            ['$scope', '$location', 'Authentication', 'cspsProducts',
   function($scope, $location, Authentication, cspsProducts) {
     // Expose the Authentication service
