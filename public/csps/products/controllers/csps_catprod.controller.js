@@ -3,7 +3,7 @@
 
 // Create the 'csps_catprod' controller
 // For category and product list relationship
-angular.module('csps_store')
+angular.module('csps_products')
 .constant("productListActiveClass", "btn-primary")
 .constant("productListPageCount", 3)
 .controller('cspsCatProductController', 
