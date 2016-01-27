@@ -5,13 +5,23 @@
 // For category and product list relationship
 angular.module('csps_store')
 .constant("productListActiveClass", "btn-primary")
+.constant("productListPageCount", 3)
 .controller('cspsCatProductController', 
-  function($scope, $filter, productListActiveClass) {
+  function($scope, $filter, 
+           productListActiveClass, productListPageCount) {
 
     var selectedCategory = null;
 
+    $scope.selectedPage = 1;
+    $scope.pageSize = productListPageCount;
+
     $scope.selectCategory = function (newCategory) {
       selectedCategory = newCategory;
+      $scope.selectedPage = 1;
+    }
+
+    $scope.selectPage = function (newPage) {
+      $scope.selectedPage = newPage;
     }
 
     $scope.categoryFilterFn = function (product) {
@@ -22,6 +32,12 @@ angular.module('csps_store')
     $scope.getCategoryClass = function (category) {
       return selectedCategory == category ? productListActiveClass : "";
     }
+
+    $scope.getPageClass = function (page) {
+      return $scope.selectedPage == page ? productListActiveClass : "";
+    }
+
+
   }
 
 );
