@@ -12,18 +12,14 @@ angular.module('csps_store').controller('cspsStoreController',
     $scope.find = function() {
       // Use the csps_products 'query' method to send an appropriate GET request
       $scope.data = { };
-      $scope.data.products = cspsProducts.query();
 
-//      $scope.data.products = [
-//            { name: "Product #1", description: "A product",
-//                category: "Category #1", price: 100 },
-//            { name: "Product #2", description: "A product",
-//                category: "Category #1", price: 110 },
-//            { name: "Product #3", description: "A product",
-//                category: "Category #2", price: 210 },
-//            { name: "Product #4", description: "A product",
-//                category: "Category #3", price: 202 }
-//      ];
+//      $scope.data.products = cspsProducts.query();
+      cspsProducts.query(function(data) {
+        $scope.data.products = data;
+      }, function(error) {
+        $scope.data.error = error;
+      });
+
     };
   }
 ]);
