@@ -7,6 +7,9 @@ var mongoose = require('mongoose'),
 
 // Define a new SportStore Product 'SpsProductSchema'
 var spsProductSchema = {
+  id: {
+    type: Number
+  },
   name: {
     type: String,
     required: 'SportStore Product name cannot be blank'
