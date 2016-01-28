@@ -6,10 +6,10 @@
 
   <div class="alert alert-danger" ng-show="data.error">
     Error ({{data.error.status}}). The product data was not loaded. 
-    <a href="/ex/proangular/sportsstore" class="alert-link">Click here to try again</a>
+    <a ng-href="{{pathExProangularSps}}" class="alert-link">Click here to try again</a>
   </div>
 
-  <ng-include src="'/csps/products/views/csps_catproduct.view.html'"></ng-include>
+  <ng-include src="pathCspsCatProdView"></ng-include>
 
 </section>
 
