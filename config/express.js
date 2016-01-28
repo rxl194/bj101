@@ -71,6 +71,7 @@ module.exports = function(db) {
   require('../app/routes/bo/bo_articles.routes.js')(app);
   require('../app/routes/oa/oa_todolists.routes.js')(app);
   require('../app/routes/sps/sps_products.routes.js')(app);
+  require('../app/routes/sps/sps_orders.routes.js')(app);
 
   // Configure static file serving
   app.use(express.static('./public'));

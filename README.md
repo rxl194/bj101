@@ -17,6 +17,7 @@ book2: Pro AngularJS, By: Adam Freeman, Publisher: Apress,  Pub. Date: April 01,
 # end -- mongodb setup
 
 # npm/bower setup
+ sudo npm install -g js-beautify
  sudo npm install -g bower
  sudo ln -s /usr/bin/nodejs /usr/bin/node
  npm install; bower install;
@@ -39,3 +40,6 @@ $ NODE_ENV=test karma start
 
 # end npm install -g
 
+# js-beautify
+js-beautify --config jsbeautify.config <--type html> src.html > dest.htm
+#

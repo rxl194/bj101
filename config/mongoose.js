@@ -26,6 +26,7 @@ module.exports = function() {
   require('../app/models/ys/ys_user.model');
   require('../app/models/bo/bo_article.model');
   require('../app/models/sps/sps_product.model');
+  require('../app/models/sps/sps_order.model');
 
   // Return the Mongoose connection instance
   return db;
