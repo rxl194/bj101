@@ -2,13 +2,13 @@
 'use strict';
 
 // Configure the 'articles' module routes
-angular.module('csps_products').config(['$routeProvider',
+angular.module('csps_store').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
-		when('/csps/checkout', {
+		when('/checkout', {
 			templateUrl: '/csps/cart/views/csps_checkout.view.html'
 		}).
-		when('/csps/products', {
+		when('/products', {
 			templateUrl: '/csps/products/views/csps_catproduct.view.html'
 		}).
 		otherwise({
