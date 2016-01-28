@@ -12,8 +12,6 @@
     window.user = <%- cys_user || 'null' %>;
   </script>
 
-  <!-- Render AngularJS views  -->
-  <section ng-view></section>
 
   <!-- Load local libraries -->
   <script type="text/javascript" src="/lib/angular/angular.js"></script>
@@ -36,7 +34,6 @@
 
   <!-- Load the coa-todolists module -->
   <script type="text/javascript" src="/csps/store/csps_store.module.js"></script>
-  <script type="text/javascript" src="/csps/store/config/csps_store.routes.js"></script>
   <script type="text/javascript" src="/csps/store/controllers/csps_store.controller.js"></script>
   <!--
   <script type="text/javascript" src="/coa/todolists/services/coa_todolists.service.js"></script>
@@ -48,6 +45,23 @@
 
   <!-- Bootstrap AngularJS application -->
   <script type="text/javascript" src="/cex/proangular/cex_proangular_sportsstore.js"></script>
+
+  <!-- Render AngularJS views  -->
+  <section data-ng-controller="cspsStoreController" data-ng-init="find()">
+    <div class="navbar navbar-inverse">
+      <a class="navbar-brand" href="#">SPORTS STORE</a>
+      <csps-cart-summary />
+    </div>
+
+    <div class="alert alert-danger" ng-show="data.error">
+      Error ({{data.error.status}}). The product data was not loaded. 
+      <a ng-href="{{pathExProangularSps}}" class="alert-link">Click here to try again</a>
+    </div>
+
+    <ng-include src="pathCspsCatProdView"></ng-include>
+
+  </section>
+
 </body>
 </html>
 
