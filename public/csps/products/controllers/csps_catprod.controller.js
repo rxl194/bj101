@@ -7,7 +7,7 @@ angular.module('csps_products')
 .constant("productListActiveClass", "btn-primary")
 .constant("productListPageCount", 3)
 .controller('cspsCatProductController', 
-  function($scope, $filter, 
+  function($scope, $filter, cspsCart,
            productListActiveClass, productListPageCount) {
 
     var selectedCategory = null;
@@ -37,6 +37,9 @@ angular.module('csps_products')
       return $scope.selectedPage == page ? productListActiveClass : "";
     }
 
+    $scope.addProductToCart = function (product) {
+      cspsCart.addProduct(product.id, product.name, product.price);
+    }
 
   }
 

@@ -2,5 +2,5 @@
 'use strict';
 
 // Create the 'csps_products' module
-angular.module('csps_products', []);
+angular.module('csps_products', ['csps_cart']);
 
