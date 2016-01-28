@@ -24,7 +24,7 @@
       <a ng-href="{{pathExProangularSps}}" class="alert-link">Click here to try again</a>
     </div>
 
-    <ng-include src="pathCspsCatProdView"></ng-include>
+    <ng-view />
 
   </section>
 
@@ -42,6 +42,7 @@
   <script type="text/javascript" src="/csps/products/csps_products.module.js"></script>
   <script type="text/javascript" src="/csps/products/services/csps_products.service.js"></script>
   <script type="text/javascript" src="/csps/products/controllers/csps_catprod.controller.js"></script>
+  <script type="text/javascript" src="/csps/products/config/csps_catproducts.routes.js"></script>
 
   <!-- Load the csps_cart moduel -->
   <script type="text/javascript" src="/csps/cart/csps_cart.module.js"></script>
