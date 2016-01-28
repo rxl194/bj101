@@ -5,10 +5,10 @@
 angular.module('csps_store').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
-		when('/checkout', {
+		when('/csps/checkout', {
 			templateUrl: '/csps/cart/views/csps_checkout.view.html'
 		}).
-		when('/products', {
+		when('/csps/products', {
 			templateUrl: '/csps/products/views/csps_catproduct.view.html'
 		}).
 		otherwise({
