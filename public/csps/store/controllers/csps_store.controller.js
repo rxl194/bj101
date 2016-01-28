@@ -3,8 +3,8 @@
 
 // Create the 'csps_store' controller
 angular.module('csps_store').controller('cspsStoreController', 
-           ['$scope', '$location', 'Authentication', 'cspsProducts',
-  function($scope, $location, Authentication, cspsProducts) {
+           ['$scope', '$location', 'Authentication', 'cspsProducts', 'cspsOrders', 'cspsCart',
+  function($scope, $location, Authentication, cspsProducts, cspsOrders, cspsCart) {
     // Expose the Authentication service
     $scope.authentication = Authentication;
     $scope.pathExProangularSps = '/ex/proangular/sportsstore';
@@ -20,8 +20,26 @@ angular.module('csps_store').controller('cspsStoreController',
       }, function(error) {
         $scope.data.error = error;
       });
-
     };
+
+    $scope.sendOrder = function (shippingDetails) {
+
+      var order = angular.copy(shippingDetails);
+      order.products = cspsCart.getProducts();
+
+      $http.post(orderUrl, order)
+      .success(function (data) {
+        $scope.data.orderId = data.id;
+        cart.getProducts().length = 0;
+      })
+      .error(function (error) {
+          $scope.data.orderError = error;
+      })
+      .finally(function () {
+          $location.path("/complete");
+      });
+    }
+   
   }
 ]);
 
