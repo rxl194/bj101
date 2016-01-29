@@ -1,0 +1,20 @@
+<!-- The cex_meanbook view -->
+<section ng-controller="cspsAdminController">
+	<!-- If the user is not authenticated show the authentication link -->
+	<div data-ng-show="!windows.user">
+		<a href="/ys/signup">Signup</a>
+		<a href="/ys/signin">Signin</a>
+	</div>
+	<!-- Otherwise, show the user details and application links -->
+	<div data-ng-show="authentication.user">
+		<h1>Hello <span data-ng-bind="authentication.user.fullName"> to SportsStore's Admin</span></h1>	
+		<a href="/ys/signout">Signout</a>
+		<ul>
+      <li><a href="/ex/proangular">To Do List</a></li>
+      <li><a href="/#!/cbo/chat">Chat</a></li>
+			<li><a href="/#!/cbo/articles">List Articles</a></li>
+			<li><a href="/#!/cbo/articles/create">Create Article</a></li>
+		</ul>
+	</div>
+</section>
+
