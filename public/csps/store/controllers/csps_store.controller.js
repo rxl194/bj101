@@ -3,8 +3,8 @@
 
 // Create the 'csps_store' controller
 angular.module('csps_store').controller('cspsStoreController', 
-           ['$scope', '$location', 'Authentication', 'cspsProducts', 'cspsOrders', 'cspsCart',
-  function($scope, $location, Authentication, cspsProducts, cspsOrders, cspsCart) {
+           ['$scope', '$location', 'Authentication', 'cspsProducts', 'cspsCart',
+  function($scope, $location, Authentication, cspsProducts, cspsCart) {
     // Expose the Authentication service
     $scope.authentication = Authentication;
     $scope.pathExProangularSps = '/ex/proangular/sportsstore';
@@ -24,23 +24,25 @@ angular.module('csps_store').controller('cspsStoreController',
 
     $scope.sendOrder = function (shippingDetails) {
 
+// DOESN'T WORK FOR cspsOrders Service
       // Use the form fields to create a new order $resource object
-      var order = new cspsOrders(shippingDetails);
-      order.products = cspsCart.getProducts();
+      //var order = new cspsOrders(shippingDetails);
+      //order.products = cspsCart.getProducts();
 
       // Use the article '$save' method to send an appropriate POST request
-      order.$promise['finally'](function() {
-        $location.path("/complete");
-      }
+      //order.$promise['finally'](function() {
+      //  $location.path("/complete");
+      //}
 
-      order.$save(function(data) {
+      //order.$save(function(data) {
         // If an order was created successfully
-        $scope.data.orderId = data.id; 
-        cspsCart.getProducts().length = 0;
-      }, function(error) {
+        //$scope.data.orderId = data.id; 
+        //cspsCart.getProducts().length = 0;
+      //}, function(error) {
         // Otherwise, present the user with the error message
-        $scope.data.orderError = error;
-      });
+        //$scope.data.orderError = error;
+      //});
+// DOESN'T WORK FOR cspsOrders Service
 
     }
    
