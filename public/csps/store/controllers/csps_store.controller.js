@@ -34,7 +34,7 @@ angular.module('csps_store').controller('cspsStoreController',
               $scope.data.orderError = error;
             })
             .finally(function() {
-              $location.path("/complete");
+              $location.path('csps/completeorder');
             });
 
 // DOESN'T WORK FOR cspsOrders Service

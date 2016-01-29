@@ -11,11 +11,11 @@ angular.module('csps_store').config(['$routeProvider',
 		when('/csps/placeorder', {
 			templateUrl: '/csps/cart/views/csps_placeorder.view.html'
 		}).
+		when('/csps/completeorder', {
+			templateUrl: '/csps/cart/views/csps_completeorder.view.html' 
+		}).
 		when('/csps/products', {
 			templateUrl: '/csps/products/views/csps_catproduct.view.html'
-		}).
-		when('/csps/complete', {
-			templateUrl: '/csps/products/views/csps_thankyou.view.html'
 		}).
 		otherwise({
 			templateUrl: '/csps/products/views/csps_catproduct.view.html'
