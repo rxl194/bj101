@@ -13,7 +13,20 @@
   </script>
 
   <!-- Render AngularJS views  -->
-  <section ng-view></section>
+  <section data-ng-controller="cspsAdminController">
+    <div class="navbar navbar-inverse">
+      <a class="navbar-brand" href="#!">SPORTS STORE ADMIN</a>
+    </div>
+
+    <div class="alert alert-danger" ng-show="data.error">
+      Error ({{data.error.status}}). The product data was not loaded. 
+      <a ng-href="{{pathExProangularSps}}" class="alert-link">Click here to try again</a>
+    </div>
+
+    <ng-view />
+
+  </section>
+
 
   <!-- Load local libraries -->
   <script type="text/javascript" src="/lib/angular/angular.js"></script>
@@ -24,15 +37,10 @@
   <script type="text/javascript" src="/cys/users/cys_users.module.js"></script>
   <script type="text/javascript" src="/cys/users/services/authentication.client.service.js"></script>
 
-  <!-- Load the coa-todolists module -->
-  <script type="text/javascript" src="/coa/todolists/coa_todolists.module.js"></script>
-  <script type="text/javascript" src="/coa/todolists/services/coa_todolists.service.js"></script>
-  <script type="text/javascript" src="/coa/todolists/controllers/coa_todolists.controller.js"></script>
-  <script type="text/javascript" src="/coa/todolists/config/coa_todolists.routes.js"></script>
-  <script type="text/javascript" src="/coa/todolists/filters/coa_todolists.filter.js"></script>
-
   <!-- Bootstrap AngularJS application -->
-  <script type="text/javascript" src="/cex/proangular/cex_proangular_main.js"></script>
+  <script type="text/javascript" src="/cex/proangular/cex_proangular_sps_admin.js"></script>
+
+
 </body>
 </html>
 

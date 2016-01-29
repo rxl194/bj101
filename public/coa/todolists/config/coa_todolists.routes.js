@@ -1,7 +1,7 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Configure the 'cex_proangular' module routes
+// Configure the 'coa_todolists' module routes
 angular.module('coa_todolists').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.

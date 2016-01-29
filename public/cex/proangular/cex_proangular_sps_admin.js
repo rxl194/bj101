@@ -2,16 +2,16 @@
 'use strict';
 
 // Set the main application name
-var mainApplicationModuleName = 'cex_proangular_main';
+var mainApplicationModuleName = 'cex_proangular_sps_admin';
 
 // Create the main application
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'cys_users', 'coa_todolists']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'cys_users']);
 
 // Configure the hashbang URLs using the $locationProvider services 
 mainApplicationModule.config(['$locationProvider',
-	function($locationProvider) {
-		$locationProvider.hashPrefix('!');
-	}
+  function($locationProvider) {
+    $locationProvider.hashPrefix('!');
+  }
 ]);
 
 // Fix Facebook's OAuth bug
@@ -19,6 +19,6 @@ if (window.location.hash === '#_=_') window.location.hash = '#!';
 
 // Manually bootstrap the AngularJS application
 angular.element(document).ready(function() {
-	angular.bootstrap(document, [mainApplicationModuleName]);
+  angular.bootstrap(document, [mainApplicationModuleName]);
 });
 

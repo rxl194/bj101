@@ -8,5 +8,8 @@ module.exports = function(app) {
 
   var ex_sportsstore = require('../../controllers/ex/proangular/ex_proangular.sportsstore.controller');
   app.get('/ex/proangular/sportsstore', ex_sportsstore.render);
+
+  var ex_sps_admin = require('../../controllers/ex/proangular/ex_proangular.sps_admin.controller');
+  app.get('/ex/proangular/sps_admin', ex_sps_admin.render);
 };
 
