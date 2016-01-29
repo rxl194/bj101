@@ -35,8 +35,7 @@ var spsOrderSchema = {
     required: 'SportStore Order country cannot be blank'
   },
   giftwrap: {
-    type: Boolean,
-    required: 'SportStore Order giftwrap cannot be blank'
+    type: Boolean
   },
   products: [{
     type: String,

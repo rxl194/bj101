@@ -8,6 +8,7 @@ var spsOrders = require('../../controllers/sps/sps_orders.controller');
 module.exports = function(app) {
   // Set up the 'Sports Product' base routes 
   app.route('/api/sps/orders')
-     .get(spsOrders.list);
+     .get(spsOrders.list)
+     .post(spsOrders.create);
 };
 

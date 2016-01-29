@@ -5,6 +5,17 @@
 var mongoose = require('mongoose'),
   SpsOrder = mongoose.model('spsOrder');
 
+// Create a new error handling controller method
+var getErrorMessage = function(err) {
+	if (err.errors) {
+		for (var errName in err.errors) {
+			if (err.errors[errName].message) return err.errors[errName].message;
+		}
+	} else {
+		return 'Unknown server error';
+	}
+};
+
 // Create a new controller method that creates new orders
 exports.create = function(req, res) {
   // Create a new order object
