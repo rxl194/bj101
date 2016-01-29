@@ -3,8 +3,8 @@
 
 // Create the 'csps_store' controller
 angular.module('csps_store').controller('cspsStoreController', 
-           ['$scope', '$location', 'Authentication', 'cspsProducts', 'cspsCart',
-  function($scope, $location, Authentication, cspsProducts, cspsCart) {
+           ['$scope', '$location', '$http', 'Authentication', 'cspsProducts', 'cspsCart',
+  function($scope, $location, $http, Authentication, cspsProducts, cspsCart) {
     // Expose the Authentication service
     $scope.authentication = Authentication;
     $scope.pathExProangularSps = '/ex/proangular/sportsstore';
@@ -23,6 +23,19 @@ angular.module('csps_store').controller('cspsStoreController',
     };
 
     $scope.sendOrder = function (shippingDetails) {
+            var order = angular.copy(shippingDetails);
+            order.products = cspsCart.getProducts();
+            $http({method: 'POST', url: '/api/sps/orders', data: order})
+            .success( function(data) {
+              $scope.data.orderId = data.id;
+              cart.getProducts().length = 0;
+            })
+            .error(function (error) {
+              $scope.data.orderError = error;
+            })
+            .finally(function() {
+              $location.path("/complete");
+            });
 
 // DOESN'T WORK FOR cspsOrders Service
       // Use the form fields to create a new order $resource object
