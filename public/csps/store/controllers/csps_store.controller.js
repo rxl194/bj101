@@ -24,20 +24,23 @@ angular.module('csps_store').controller('cspsStoreController',
 
     $scope.sendOrder = function (shippingDetails) {
 
-      var order = angular.copy(shippingDetails);
+     	// Use the form fields to create a new order $resource object
+      var order = new cspsOrders(shippingDetails);
       order.products = cspsCart.getProducts();
 
-      $http.post(orderUrl, order)
-      .success(function (data) {
-        $scope.data.orderId = data.id;
-        cart.getProducts().length = 0;
-      })
-      .error(function (error) {
-          $scope.data.orderError = error;
-      })
-      .finally(function () {
-          $location.path("/complete");
+      // Use the article '$save' method to send an appropriate POST request
+      //order.$promise['finally'](function() {
+     //    $location.path("/complete");
+      //}
+      order.$save(function(data) {
+       	// If an order was created successfully
+        $scope.data.orderId = data.id; 
+        cspsCart.getProducts().length = 0;
+      }, function(error) {
+       	// Otherwise, present the user with the error message
+        $scope.data.orderError = error;
       });
+
     }
    
   }
