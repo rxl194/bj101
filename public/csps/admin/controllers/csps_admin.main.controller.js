@@ -4,8 +4,8 @@
 // Create the 'csps_admin' controller
 angular.module('csps_admin')
 .controller('cspsAdminMainController', 
-         ['$scope', '$window', 'Authentication', 
-  function($scope, $window, Authentication) {
+         ['$scope', 
+  function($scope ) {
 
     var viewPath = '/csps/admin/views/';
 
