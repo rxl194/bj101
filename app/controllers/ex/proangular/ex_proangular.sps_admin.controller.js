@@ -16,7 +16,7 @@ exports.render = function(req, res) {
   // Use the 'response' object to render the 'index' view with a 'title' and 'userFullName' properties
   res.render('ex/proangular/sps_admin', {
     title: myTitle,
-    cys_user: adminUser
+    admin_user: adminUser
   });
 };
 

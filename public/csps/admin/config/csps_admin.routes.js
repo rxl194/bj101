@@ -6,7 +6,7 @@ angular.module('csps_admin').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
 		when('/', {
-			templateUrl: 'csps/admin/views/csps_admin.view.html'
+			templateUrl: '/csps/admin/views/csps_admin.view.html'
 		}).
 		otherwise({
 			redirectTo: '/'

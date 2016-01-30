@@ -2,5 +2,5 @@
 'use strict';
 
 // Create the 'csps_admin' module
-angular.module('csps_admin', []);
+angular.module('csps_admin', ['ngRoute']);
 
