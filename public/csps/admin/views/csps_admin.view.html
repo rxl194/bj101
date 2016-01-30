@@ -11,7 +11,21 @@
     <div class="navbar navbar-inverse">
       <a class="navbar-brand" href="#!">SPORTS STORE ADMIN</a>
     </div>
-		<h1>Hello <span data-ng-bind="authentication.user.fullName"> to SportsStore's Admin</span></h1>	
+
+    <h1>Hello <span data-ng-bind="authentication.user.fullName"> to SportsStore's Admin</span></h1>	
+
+    <div class="panel panel-default row" ng-controller="cspsAdminMainController">
+      <div class="col-xs-3 panel-body">
+        <a ng-repeat="item in screens" class="btn btn-block btn-default"
+         ng-class="{'btn-primary': item == current }" ng-click="setScreen($index)">
+          {{item}}
+        </a>
+      </div>
+      <div class="col-xs-8 panel-body" >
+        <div ng-include="getScreen()" />
+      </div>
+    </div>
+
 	</div>
 </section>
 
