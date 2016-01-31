@@ -13,6 +13,20 @@ angular.module('csps_admin')
       $scope.orders = cspsOrders.query();
     };
 
+    $scope.selectedOrder;
+
+    $scope.selectOrder = function (order) {
+      $scope.selectedOrder = order;
+    };
+
+    $scope.calcTotal = function (order) {
+      var total = 0;
+      for (var i = 0; i < order.products.length; i++) {
+        total +=
+            order.products[i].count * order.products[i].price;
+      }
+      return total;
+    }    
   }
 ]);
 
