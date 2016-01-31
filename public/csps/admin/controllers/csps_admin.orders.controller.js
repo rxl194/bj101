@@ -17,13 +17,14 @@ angular.module('csps_admin')
 
     $scope.selectOrder = function (order) {
       $scope.selectedOrder = order;
+      $scope.selectedOrder.products = JSON.parse(order.cartData);
     };
 
     $scope.calcTotal = function (order) {
       var total = 0;
-      for (var i = 0; i < order.products.length; i++) {
+      for (var i = 0; i < order.cartData.length; i++) {
         total +=
-            order.products[i].count * order.products[i].price;
+            order.cartData[i].count * order.cartData[i].price;
       }
       return total;
     }    

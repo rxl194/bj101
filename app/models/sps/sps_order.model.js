@@ -37,10 +37,7 @@ var spsOrderSchema = {
   giftwrap: {
     type: Boolean
   },
-  products: [{
-    type: String,
-    ref: 'spsProduct'
-  }]
+  cartData: [String]
 };
 var SpsOrderSchema = new Schema(spsOrderSchema);
 

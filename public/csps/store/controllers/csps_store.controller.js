@@ -24,11 +24,12 @@ angular.module('csps_store').controller('cspsStoreController',
 
     $scope.sendOrder = function (shippingDetails) {
             var order = angular.copy(shippingDetails);
-            order.products = cspsCart.getProducts();
+            var cartData = cspsCart.getProducts();
+            order.cartData = JSON.stringify(cartData);
             $http({method: 'POST', url: '/api/sps/orders', data: order})
             .success( function(data) {
               $scope.data.orderId = data.id;
-              cart.getProducts().length = 0;
+              cspsCart.getProducts().length = 0;
             })
             .error(function (error) {
               $scope.data.orderError = error;
