@@ -2,7 +2,8 @@
 'use strict';
 
 // Load the module dependencies
-var spsProducts = require('../../controllers/sps/sps_products.controller');
+var users = require('../../controllers/ys/ys_users.controller'),
+  spsProducts = require('../../controllers/sps/sps_products.controller');
 
 // Define the routes module' method
 module.exports = function(app) {
@@ -12,6 +13,15 @@ module.exports = function(app) {
 
   app.route('/api/sps/products')
      .get(spsProducts.list)
-     .post(spsProducts.create);
+     .post(users.requiresLogin, spsProducts.create);
+
+	// Set up the 'products' parameterized routes
+	app.route('/api/sps/products/:productId')
+	   .get(spsProducts.read)
+	   .put(users.requiresLogin, spsProducts.hasAuthorization, spsProducts.update)
+	   .delete(users.requiresLogin, spsProducts.hasAuthorization, spsProducts.delete);
+
+	// Set up the 'productId' parameter middleware   
+	app.param('productId', spsProducts.spsProductByID);
 };
 
