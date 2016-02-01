@@ -7,13 +7,13 @@ var mongoose = require('mongoose'),
 
 // Create a new error handling controller method
 var getErrorMessage = function(err) {
-	if (err.errors) {
-		for (var errName in err.errors) {
-			if (err.errors[errName].message) return err.errors[errName].message;
-		}
-	} else {
-		return 'Unknown server error';
-	}
+  if (err.errors) {
+    for (var errName in err.errors) {
+      if (err.errors[errName].message) return err.errors[errName].message;
+    }
+  } else {
+    return 'Unknown server error';
+  }
 };
 
 // Create a new controller method that creates new products
@@ -59,8 +59,27 @@ exports.init = function(rq,res) {
   ];
 
   var i, len =  spsProducts.length;
-}
+  for ( i=0; i<len; i++ ) {
+    // Create a new product object
+    var product = new SpsProduct(spsProducts[i]);
 
+    // Try saving the product
+    product.save(function(err) {
+      if (err) {
+        // If an error occurs send the error message
+        return res.status(400).send({
+          message: getErrorMessage(err)
+        });
+      } else {
+        // Send a JSON representation of the product 
+        // res.json(product);
+      }
+    });
+  }
+   
+  // Send a JSON representation of the products
+  res.json(spsProducts);
+}
 
 // Create a new controller method that retrieves a list of products
 exports.list = function(req, res) {
