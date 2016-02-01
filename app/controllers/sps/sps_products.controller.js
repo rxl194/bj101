@@ -5,8 +5,38 @@
 var mongoose = require('mongoose'),
   SpsProduct = mongoose.model('spsProduct');
 
-// Create a new controller method that retrieves a list of articles
-exports.list_all = function(req, res) {
+// Create a new error handling controller method
+var getErrorMessage = function(err) {
+	if (err.errors) {
+		for (var errName in err.errors) {
+			if (err.errors[errName].message) return err.errors[errName].message;
+		}
+	} else {
+		return 'Unknown server error';
+	}
+};
+
+// Create a new controller method that creates new products
+exports.create = function(req, res) {
+  // Create a new product object
+  var product = new SpsProduct(req.body);
+
+  // Try saving the product
+  product.save(function(err) {
+    if (err) {
+      // If an error occurs send the error message
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      // Send a JSON representation of the product 
+      res.json(product);
+    }
+  });
+};
+
+// Init products
+exports.init = function(rq,res) {
   var spsProducts = [
    {"id":1, "category":"Watersports","description":"A boat for one person","name":"Kayak",
     "price":275},
@@ -28,7 +58,26 @@ exports.list_all = function(req, res) {
     "name":"Bling-Bling King","price":1200}
   ];
 
-  // Send a JSON representation of the SportProducts 
-  res.json(spsProducts);
+  var i, len =  spsProducts.length;
+}
+
+
+// Create a new controller method that retrieves a list of products
+exports.list = function(req, res) {
+  // Use the model 'find' method to get a list of orders
+  SpsProduct
+  .find()
+  .exec(function(err, products) {
+    if (err) {
+      // If an error occurs send the error message
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      // Send a JSON representation of the product 
+      res.json(products);
+    }
+  });
+
 };
 
