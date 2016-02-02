@@ -5,7 +5,7 @@
 angular.module('csps_products').factory('cspsProducts', ['$resource', function($resource) {
   // Use the '$resource' service to return an article '$resource' object
     return $resource('/api/sps/products/:productId', {
-        articleId: '@_id'
+        productId: '@_id'
     }, {
         update: {
             method: 'PUT'

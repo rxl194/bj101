@@ -23,7 +23,7 @@
       <button ng-click="startEdit(item)" class="btn btn-xs btn-primary">
         Edit
       </button>
-      <button ng-click="deleteProduct(item)" class="btn btn-xs btn-primary">
+      <button ng-click="deleteCspsProduct(item)" class="btn btn-xs btn-primary">
         Delete
       </button>
     </td>
@@ -35,12 +35,12 @@
     <td><input ng-model="editedProduct.price" required /></td>
     <td>
       <button ng-hide="editedProduct.id" 
-              ng-click="createProduct(editedProduct)" 
+              ng-click="createCspsProduct(editedProduct)" 
               class="btn btn-xs btn-primary">
         Create
       </button>
       <button ng-show="editedProduct.id" 
-              ng-click="updateProduct(editedProduct)" 
+              ng-click="updateCspsProduct(editedProduct)" 
               class="btn btn-xs btn-primary">
         Save
       </button>
