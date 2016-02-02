@@ -38,7 +38,7 @@ angular.module('csps_products')
     }
 
     $scope.addProductToCart = function (product) {
-      cspsCart.addProduct(product.id, product.name, product.price);
+      cspsCart.addProduct(product._id, product.name, product.price);
     }
 
   }
