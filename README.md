@@ -7,6 +7,16 @@ book1: MEAN Web Development, By: Amos Q. Haviv, Publisher: Packt Publishing, Pub
 book2: Pro AngularJS, By: Adam Freeman, Publisher: Apress,  Pub. Date: April 01, 2014, 
         Print ISBN-10: 1-4302-6448-9,  ISBN-13: 978-1-4302-6448-4
 
+# ubuntu install mongodb
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+
+sudo service mongod start
+
+# end ubuntu install mongodb
+
 # mongodb setup
     // git clone git://github.com/mongolab/hello-mongoose.git && cd hello-mongoose
     //heroku create
