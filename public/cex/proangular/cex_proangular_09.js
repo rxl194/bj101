@@ -19,5 +19,5 @@ if (window.location.hash === '#_=_') window.location.hash = '#!';
 
 // Manually bootstrap the AngularJS application
 angular.element(document).ready(function() {
-	angular.bootstrap(document, [mainApplicationModuleName]);
+//	angular.bootstrap(document, [mainApplicationModuleName]);
 });

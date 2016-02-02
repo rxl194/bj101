@@ -13,16 +13,22 @@
 </head>
 
 <body>
-  <div class="panel" ng-controller="cexProangula09DayCtrl">
+  <div class="panel">
     <div class="page-header">
       <h3>AngularJS App</h3>
     </div>
-    <h4>Today is {{day || "(unknown)"}}</h4>
+    <h4 ng-controller="cexProangula09DayCtrl" cexpahighlight="Monday">
+      Today is {{day || "(unknown)" | cexPaDaynames}}
+    </h4>
+    <h4 ng-controller="cexProangula09DayCtrl">tomorrow  is {{tomorrow || "(unknown)" | cexPaDaynames}}</h4>
   </div>
 
   <!-- Load the cex_proangular_09 module -->
   <script type="text/javascript" src="/cex/proangular/cex_proangular_09.js"></script>
   <script type="text/javascript" src="/cex/proangular/controllers/cex_proangular_09.controller.js"></script>
+  <script type="text/javascript" src="/cex/proangular/directives/cex_proangular_09.directives.js"></script>
+  <script type="text/javascript" src="/cex/proangular/filters/cex_proangular_09.filters.js"></script>
+  <script type="text/javascript" src="/cex/proangular/services/cex_proangular_09.services.js"></script>
   
 </body>
 
