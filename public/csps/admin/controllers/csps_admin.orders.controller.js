@@ -1,7 +1,7 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Create the 'csps_admin' controller
+// Create the 'cspsAdminOrdersController' controller
 angular.module('csps_admin')
 .controller('cspsAdminOrdersController', 
          ['$scope', 'Authentication', 'cspsOrders',
