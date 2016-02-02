@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProAngular Ch09_10 Directives</title>
+  <link href="../../css/bootstrap.css" rel="stylesheet" />
+  <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+  <script src="../../../../lib/angular/angular.js"></script>
+  <script src="../cexPa10.app.js"></script>
+  <script src="../controllers/cexPa10.controller.js"></script>    
+  <style>
+    .odd { background-color: lightcoral}
+    .even { background-color: lavenderblush}
+  </style>
+</head>
+<body  ng-app="cexPa010App">
+  <div id="todoPanel" class="panel" ng-controller="cexPa10DefaultCtrl">
+    <h3 class="panel-header">To Do List</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Action</th>
+          <th>Done</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat-start="item in todos">
+          <td>This is item {{$index}}</td>
+        </tr>
+        <tr>
+          <td>The action is: {{item.action}}</td>
+        </tr>
+        <tr ng-repeat-end>
+          <td>Item {{$index}} is {{$item.complete? '' : "not "}} complete</td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+</html>

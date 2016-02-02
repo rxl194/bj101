@@ -9,4 +9,8 @@ angular.module("cexPa010App")
     { action: "Buy running shoes", complete: true },
     { action: "Buy flowers", complete: false },
     { action: "Call family", complete: false }];
+    
+  $scope.viewFile = function() {
+    return $scope.showList ? "L13_list.html" : "L11_table.html";    
+  };
 });
