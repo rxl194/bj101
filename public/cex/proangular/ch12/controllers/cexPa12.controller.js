@@ -3,6 +3,9 @@
 
 angular.module("cexPa12App")
 .controller("cexPa12DefaultCtrl", function ($scope) {
+  
+  $scope.requireValue = true;
+  $scope.matchPattern = new RegExp("^[a-z]");  
  
   $scope.todos = [
     { action: "Get groceries", complete: false },
@@ -20,4 +23,32 @@ angular.module("cexPa12App")
       });
     }
   };    
+  
+  $scope.addUserValidate = function (userDetails) {
+    if (myForm.$valid) {
+      $scope.message = userDetails.name
+          + " (" + userDetails.email + ") ("
+          + userDetails.agreed + ")";
+    } else {
+      $scope.showValidation = true;
+    }
+  }
+  
+  $scope.addUser = function (userDetails) {
+    $scope.message = userDetails.name
+        + " (" + userDetails.email + ") (" + userDetails.agreed + ")";
+  }
+
+  $scope.message = "Ready";  
+
+  $scope.getError = function (error) {
+    if (angular.isDefined(error)) {
+      if (error.required) {
+          return "Please enter a value";
+      } else if (error.email) {
+          return "Please enter a valid email address";
+      }
+    }
+  }  
+  
 });
