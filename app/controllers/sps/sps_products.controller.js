@@ -79,7 +79,7 @@ exports.init = function(rq,res) {
    
   // Send a JSON representation of the spsProducts
   res.json(spsProducts);
-}
+};
 
 // Create a new controller method that retrieves a list of spsProducts
 exports.list = function(req, res) {
@@ -152,7 +152,7 @@ exports.delete = function(req, res) {
 // Create a new controller middleware that retrieves a single existing spsProduct
 exports.spsProductByID = function(req, res, next, id) {
 	// Use the model 'findById' method to find a single spsProduct 
-	SpsProduct.findById(_id).exec(function(err, spsProduct) {
+	SpsProduct.findById(id).exec(function(err, spsProduct) {
 		if (err) return next(err);
 		if (!spsProduct) return next(new Error('Failed to load product ' + id));
 
