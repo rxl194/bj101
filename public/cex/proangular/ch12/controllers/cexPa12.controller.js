@@ -8,11 +8,11 @@ angular.module("cexPa12App")
   $scope.matchPattern = new RegExp("^[a-z]");  
  
   $scope.todos = [
-    { action: "Get groceries", complete: false },
-    { action: "Call plumber", complete: false },
-    { action: "Buy running shoes", complete: true },
-    { action: "Buy flowers", complete: false },
-    { action: "Call family", complete: false }];
+    { id: 100, place: "Store", action: "Get groceries", complete: false },
+    { id: 200, place: "Home",  action: "Call plumber", complete: false },
+    { id: 300, place: "Store", action: "Buy running shoes", complete: true },
+    { id: 400, place: "Store", action: "Buy flowers", complete: false },
+    { id: 500, place: "Home",  action: "Call family", complete: false }];
 
   $scope.addNewItem = function (newItem) {
     if (angular.isDefined(newItem)&& angular.isDefined(newItem.action)
