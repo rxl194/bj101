@@ -5,6 +5,7 @@ angular.module("cexPa011App")
 .controller("cexPa11DefaultCtrl", function ($scope) {
   $scope.data = {};
   $scope.message = "Tap Me!";
+  $scope.dataValue = false;
   
   $scope.todos = [
     { action: "Get groceries", complete: false },
