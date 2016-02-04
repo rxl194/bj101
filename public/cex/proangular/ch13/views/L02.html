@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch13_02 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script src="../cexPa13.app.js"></script>
+    <script src="../controllers/cexPa13.controller.js"></script>    
+</head>
+<body  ng-app="cexPa13App">
+    <div class="well" ng-controller="cexPa13SimpleCtrl">
+        <p>The city is: {{city}}</p>
+        <p>The country is: {{getCountry(city) || "Unknown"}}</p>
+    </div>
+</body>
+</html>

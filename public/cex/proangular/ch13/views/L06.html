@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch13_06 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script src="../cexPa13.app.js"></script>
+    <script src="../controllers/cexPa13.controller.js"></script>    
+</head>
+<body  ng-app="cexPa13App">
+    <div class="well" ng-controller="cexPa13SimpleCtrl">    
+      <h4>Billing Zip Code</h4>
+      <div class="form-group">
+        <input class="form-control" ng-model="billingZip">
+      </div>
+      <button class="btn btn-primary" ng-click="setAddress('billingZip', billingZip)">
+          Save Billing
+      </button> 
+    </div>
+    <div class="well" ng-controller="cexPa13SimpleCtrl">
+      <h4>Shipping Zip Code</h4>
+      <div class="form-group">
+        <input class="form-control" ng-model="shippingZip">
+      </div>
+      <button class="btn btn-primary" ng-click="copyAddress()">
+        Use Billing Zip
+      </button>
+      <button class="btn btn-primary" ng-click="setAddress('shippingZip', shippingZip)">
+        Save Shipping
+      </button>
+    </div>    
+</body>
+</html>

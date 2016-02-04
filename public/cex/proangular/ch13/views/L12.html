@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch13_12 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script src="../cexPa13.app.js"></script>
+    <script src="../controllers/cexPa13.controller.js"></script>    
+</head>
+<body  ng-app="cexPa13App" ng-controller="cexPa13TopDataInheritanceCtrl">
+  <div class="well">
+    <h4>Top Level Controller</h4>
+    <div class="input-group">
+      <span class="input-group-btn">
+          <button class="btn btn-default" type="button"
+                  ng-click="reverseText()">Reverse</button>
+          <button class="btn btn-default" type="button"
+                  ng-click="changeCase()">Case</button>
+      </span>
+      <input class="form-control" ng-model="data.dataValue">
+    </div>
+  </div>
+
+  <div class="well" ng-controller="cexPa13FirstDataInheritanceCtrl">
+    <h4>First Child Controller</h4>
+    <div class="input-group">
+      <span class="input-group-btn">
+          <button class="btn btn-default" type="button"
+                  ng-click="reverseText()">Reverse</button>
+          <button class="btn btn-default" type="button"
+                  ng-click="changeCase()">Case</button>
+      </span>
+      <input class="form-control" ng-model="data.dataValue">
+    </div>
+  </div>  
+
+  <div class="well" ng-controller="cexPa13SecondDataInheritanceCtrl">
+    <h4>Second Child Controller</h4>
+    <div class="input-group">
+      <span class="input-group-btn">
+          <button class="btn btn-default" type="button"
+                  ng-click="reverseText()">Reverse</button>
+          <button class="btn btn-default" type="button"
+                  ng-click="changeCase()">Case</button>
+          <button class="btn btn-default" type="button"
+                  ng-click="shiftFour()">Shift</button>
+      </span>
+      <input class="form-control" ng-model="data.dataValue">
+    </div>
+  </div>  
+  
+  
+</body>
+</html>
