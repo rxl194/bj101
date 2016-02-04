@@ -133,5 +133,19 @@ app.controller("cexPa13ScopeLessCtrl", function () {
   }
 });
 
+app.controller("cexPa13L15Ctrl", function ($scope) {
+  $scope.buttonEnabled = true;
+  $scope.clickCounter = 0;
+
+  $scope.handleClick = function () {
+    $scope.clickCounter++;
+  }
+  
+  $scope.$watch('buttonEnabled', function (newValue) {
+    $('#jqui button').button({
+      disabled: !newValue
+    });
+  });  
+});
 
 

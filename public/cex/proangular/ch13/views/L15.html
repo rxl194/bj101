@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch13_15 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script src="../cexPa13.app.js"></script>
+    <script src="../controllers/cexPa13.controller.js"></script>    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href=
+   "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/sunny/jquery-ui.min.css">
+    <script>
+      $(document).ready(function () {
+        $('#jqui button').button().click(function (e) {
+            //alert("jQuery UI Button was clicked");
+            angular.element(angularRegion).scope().$apply('handleClick()');
+        });
+      });
+    </script>    
+</head>
+<body ng-app="cexPa13App">
+  <div id="angularRegion" class="well" ng-controller="cexPa13L15Ctrl">            
+    <h4>AngularJS</h4>
+    <div class="checkbox">
+      <label>
+          <input type="checkbox" ng-model="buttonEnabled"> Enable Button
+      </label>
+    </div>
+    Click counter: {{clickCounter}}
+  </div>
+  <div id="jqui" class="well">
+    <h4>jQuery UI</h4>
+    <button>Click Me!</button>
+  </div>
+</body>
+</html>
