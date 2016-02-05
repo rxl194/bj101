@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch15_19 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script src="../cexPa15.app.js"></script>
+    <script src="../controllers/cexPa15.L17.controller.js"></script> 
+    <script src="../directives/cexPa15.L18.directives.js"></script>    
+    <style>
+      .bold { font-weight: bold; }
+    </style>    
+</head>
+<body  ng-app="cexPa15App">
+  <div class="well" ng-controller="cexPa15SimpleCtrl">
+    <h3>Fruit</h3>
+    <div cex-pa15-demo-directive>
+      <button>Click Me</button>    
+    </div>
+  </div>
+</body>
+</html>

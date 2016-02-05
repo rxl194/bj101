@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch15_10 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script src="../cexPa15.app.js"></script>
+    <script src="../controllers/cexPa15.controller.js"></script> 
+    <script src="../directives/cexPa15.L10.directives.js"></script>    
+</head>
+<body  ng-app="cexPa15App">
+  <div class="well" ng-controller="cexPa15SimpleCtrl">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3>Products</h3>
+      </div>
+      <div class="panel-body">
+        <button class="btn btn-primary" ng-click="incrementPrices()">
+            Change Prices
+        </button>
+      </div>      
+      <div class="panel-body">
+        <div cex-pa15-unordered-list="products" list-property="price | currency"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

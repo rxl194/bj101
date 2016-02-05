@@ -18,8 +18,12 @@ app.controller("cexPa15SimpleCtrl", function ($scope) {
     { name: "Wine", category: "Drinks", price: 8.99, expiry: 365 },
     { name: "Whiskey", category: "Drinks", price: 45.99, expiry: 365 }
   ];
-      
-
+  
+  $scope.incrementPrices = function () {
+    for (var i = 0; i < $scope.products.length; i++) {
+        $scope.products[i].price++;
+    }
+  }  
   
 });
 
