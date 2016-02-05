@@ -23,6 +23,22 @@ app.controller("cexPa14SimpleCtrl", function ($scope) {
     var now = new Date();
     return now.setDate(now.getDate() + days);
   }      
+  
+  $scope.limitVal = "5";
+  $scope.limitRange = [];
+  for (var i = (0 - $scope.products.length);
+          i <= $scope.products.length; i++) {
+    $scope.limitRange.push(i.toString());
+  }  
+
+  $scope.selectItems = function (item) {
+    return item.category == "Fish" || item.name == "Beer";
+  };
+  
+  $scope.myCustomSorter = function (item) {
+    return item.expiry < 5 ? 0 : item.price;
+  }  
+  
 });
 
 

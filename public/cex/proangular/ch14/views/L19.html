@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch14_19 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+<!--    <script src="../../../../lib/angular-i18n/angular-locale_fr-fr.js"></script> -->
+    <script src="../cexPa14.app.js"></script>
+    <script src="../controllers/cexPa14.controller.js"></script>
+    <script src="../filters/cexPa14.filters.js"></script>    
+</head>
+<body  ng-app="cexPa14App">
+  <div class="panel panel-default" ng-controller="cexPa14SimpleCtrl">
+    <div class="panel-heading">
+      <h3>
+          Products
+          <span class="label label-primary">{{products.length}}</span>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped table-bordered table-condensed">
+        <thead>
+          <tr>
+              <td>Name</td>
+              <td>Category</td>
+              <td>Expiry</td>
+              <td class="text-right">Price</td>
+          </tr>
+        </thead>
+          <tbody>
+            <tr ng-repeat="p in products | orderBy:[myCustomSorter, '-price'] |
+            limitTo: 5">
+              <td>{{p.name | cexPa14LabelCase }}</td>
+              <td>{{p.category | cexPa14LabelCase:true }}</td>
+              <td>{{p.expiry}}</td>
+              <td class="text-right">{{p.price | currency }}</td>    
+             </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
