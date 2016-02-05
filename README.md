@@ -3,6 +3,7 @@
 # cex/meanbook cex_meanbook 
 book1: MEAN Web Development, By: Amos Q. Haviv, Publisher: Packt Publishing, Pub. Date: September 25, 2014
 
+# app/views/ex/proangular
 # cex/proangular cex_proangular
 book2: Pro AngularJS, By: Adam Freeman, Publisher: Apress,  Pub. Date: April 01, 2014, 
         Print ISBN-10: 1-4302-6448-9,  ISBN-13: 978-1-4302-6448-4
