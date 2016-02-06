@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch16_08 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script type="text/template" id="listTemplate">
+        <ul>
+            <li ng-repeat="item in data">{{item.price | currency}}</li>
+        </ul>
+    </script>    
+    <script src="../cexPa16.app.js"></script>
+    <script src="../controllers/cexPa16.controller.js"></script> 
+    <script src="../directives/cexPa16.L08.directives.js"></script>    
+
+</head>
+<body  ng-app="cexPa16App">
+  <div class="well" ng-controller="cexPa16SimpleCtrl">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3>Products</h3>
+      </div>
+      <div class="panel-body">
+        <div cex-pa16-unordered-list="products">
+          This is where the list will go
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

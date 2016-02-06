@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ProAngular Ch16_03 Controllers</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script src="../cexPa16.app.js"></script>
+    <script src="../controllers/cexPa16.controller.js"></script> 
+    <script src="../directives/cexPa16.L02.directives.js"></script>    
+</head>
+<body  ng-app="cexPa16App">
+  <div class="well" ng-controller="cexPa16SimpleCtrl">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3>Products</h3>
+      </div>
+      <div class="panel-body">
+        <cex-pa16-unordered-list list-source="products" list-property="price | currency" />
+      </div>
+    </div>
+  </div>
+</body>
+</html>
