@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProAngular Ch17_02 Directive Controllers</title>
+  <link href="../../css/bootstrap.css" rel="stylesheet" />
+  <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+  <script src="../../../../lib/angular/angular.js"></script>
+  <script src="../cexPa17.app.js"></script>
+  <script src="./controllers/cexPa17.controller.js"></script> 
+  <script src="./directives/cexPa17.directives.js"></script>    
+  <script type="text/ng-template" id="triTemplate">
+    <div class="well">
+      <div class="btn-group">
+        <button class="btn btn-default">Yes</button>
+        <button class="btn btn-default">No</button>
+        <button class="btn btn-default">Not Sure</button>
+      </div>
+    </div>
+  </script>  
+</head>
+<body  ng-app="cexPa17App">
+  <div class="well" ng-controller="cexPa17SimpleCtrl">
+    <div><tri-button ng-model="dataValue" /></div>
+    <div class="well">
+      Value:
+      <select ng-model="dataValue">
+        <option>Yes</option>
+        <option>No</option>
+        <option>Not Sure</option>
+        <option>Huh?</option>
+      </select>
+    </div> 
+  </div>
+</body>
+</html>

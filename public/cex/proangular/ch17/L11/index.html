@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ProAngular Ch17_02 Directive Controllers</title>
+  <link href="../../css/bootstrap.css" rel="stylesheet" />
+  <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+  <script src="../../../../lib/angular/angular.js"></script>
+  <script src="../cexPa17.app.js"></script>
+  <script src="./controllers/cexPa17.controller.js"></script> 
+  <script src="./directives/cexPa17.directives.js"></script>    
+  <style>
+      *.error { color: red; font-weight: bold; }
+  </style>  
+  <script type="text/ng-template" id="triTemplate">
+    <div class="well">
+      <div class="btn-group">
+        <button class="btn btn-default">Yes</button>
+        <button class="btn btn-default">No</button>
+        <button class="btn btn-default">Not Sure</button>
+      </div>
+      <span class="error" ng-show="myForm.decision.$error.confidence">
+        You need to be sure
+      </span>      
+    </div>
+  </script>  
+</head>
+<body  ng-app="cexPa17App">
+  <div class="well" ng-controller="cexPa17SimpleCtrl">
+    <form name="myForm" novalidate>
+      <div><tri-button name="decision" ng-model="dataValue" /></div>
+    </form> 
+  </div>
+</body>
+</html>
