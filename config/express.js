@@ -13,6 +13,7 @@ var config = require('./config'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session),
   flash = require('connect-flash'),
+  consolidate_eng = require('consolidate'),
   passport = require('passport');
 
 // Define the Express configuration method
@@ -55,7 +56,13 @@ module.exports = function(db) {
 
   // Set the application view engine and 'views' folder
   app.set('views', './app/views');
-  app.set('view engine', 'ejs');
+  // Load the defaul html view engine for SampleProjects
+  if (process.env.BJ101_ENV_APP_M101JS === 'development') {
+    app.engine('html', consolidate_eng.nunjucks);
+    app.set('view engine', 'html');
+  } else {
+    app.set('view engine', 'ejs');
+  }
 
   // Configure the flash messages middleware
   app.use(flash());
