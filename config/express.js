@@ -73,6 +73,11 @@ module.exports = function(db) {
   require('../app/routes/sps/sps_products.routes.js')(app);
   require('../app/routes/sps/sps_orders.routes.js')(app);
 
+  // Load the routing files for SampleProjects
+  if (process.env.BJ101_ENV_APP_M101JS === 'development') {
+    require('../app/routes/ex/m101js/ex_m101js.w01.routes.js')(app, db);
+  }
+
   // Configure static file serving
   app.use(express.static('./public'));
 
