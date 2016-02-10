@@ -2,10 +2,12 @@
 <style>
 body { font-family: 'Helvetica', 'Arial', sans-serif; }
 </style>
+	<!-- Use the 'title' property to render a page title  -->
+	<title><%= title %></title>
 </head>
 
 <h1>ex_m101js w01 Movies</h1>
-{% for movie in movies %}
+{% for movie in enMovies %}
   <li><a href="http://www.imdb.com/title/{{ movie.imdb }}">{{ movie.title }}, {{ movie.year }}</a></li>
 {% else %}
   <li>No movies found.</li>
