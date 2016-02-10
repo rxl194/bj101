@@ -28,6 +28,12 @@ module.exports = function() {
   require('../app/models/sps/sps_product.model');
   require('../app/models/sps/sps_order.model');
 
+  // Load the routing files for SampleProjects
+  if (process.env.BJ101_ENV_APP_M101JS === 'development') {
+    require('../app/models/en/en_movies.model');
+  }
+
+
   // Return the Mongoose connection instance
   return db;
 };

@@ -75,7 +75,7 @@ module.exports = function(db) {
 
   // Load the routing files for SampleProjects
   if (process.env.BJ101_ENV_APP_M101JS === 'development') {
-    require('../app/routes/ex/m101js/ex_m101js.w01.routes.js')(app, db);
+    require('../app/routes/ex/m101js/ex_m101js.w01.routes.js')(app);
   }
 
   // Configure static file serving
