@@ -56,13 +56,8 @@ module.exports = function(db) {
 
   // Set the application view engine and 'views' folder
   app.set('views', './app/views');
-  // Load the defaul html view engine for SampleProjects
-  if (process.env.BJ101_ENV_APP_M101JS === 'development') {
-    app.engine('html', consolidate_eng.nunjucks);
-    app.set('view engine', 'html');
-  } else {
-    app.set('view engine', 'ejs');
-  }
+  app.engine('html', consolidate_eng.nunjucks);
+  app.set('view engine', 'ejs');
 
   // Configure the flash messages middleware
   app.use(flash());

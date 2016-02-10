@@ -42,7 +42,7 @@ exports.render = function(req, res) {
   EnMovie.find().exec(function(err, movies) {
 
 	  // Use the 'response' object to render the 'index' view with a 'title' and 'userFullName' properties
-	  res.render('ex/m101js/w01/movies', {
+	  res.render('ex/m101js/w01/movies.html', {
 		  title: 'ex_m101js w01 Movies',
 		  enMovies: movies
 	  });
