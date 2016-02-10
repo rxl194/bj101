@@ -16,7 +16,7 @@ var enMovieSchema = {
 	year: {
 		type: Number,
     min: 1900,
-    max: 9999
+    max: 9999,
 		default: 2000,
 		trim: true,
 		required: 'Year cannot be blank'
