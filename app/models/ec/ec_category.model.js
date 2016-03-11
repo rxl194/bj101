@@ -23,3 +23,12 @@ exports.Schema = categorySchema;
 // Create the 'ecCategory' model out of the 'CategorySchema'
 exports.Model = mongoose.model('ecCategory', CategorySchema);
 
+module.exports.wagner = function(wagner) {
+  wagner.factory('ecCategory', function() {
+    return exports.Model;
+  });
+  
+  return {
+    ecCategory: exports.Model
+  };
+}
