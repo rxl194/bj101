@@ -9,5 +9,5 @@ var users = require('../../controllers/ys/ys_users.controller'),
 module.exports = function(app, wagner) {
 	// Set up the 'categorys' base routes 
 	app.route('/api/ec/categorys')
-	   .get(categorys.list);
+	   .get(categorys.list(wagner));
 };
