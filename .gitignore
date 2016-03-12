@@ -2,3 +2,4 @@ node_modules/*
 run_node_server
 test_node
 dump
+dump.*
