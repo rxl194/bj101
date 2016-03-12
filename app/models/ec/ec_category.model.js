@@ -1,34 +1,35 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+module.exports = function(wagner) {
 
-// Define a new 'CategorySchema'
-var categorySchema = {
-  _id: { type: String },
-  parent: {
-    type: String,
-    ref: 'ecCategory'
-  },
-  ancestors: [{
-    type: String,
-    ref: 'ecCategory'
-  }]
-};
-var CategorySchema = new Schema(categorySchema);
+  var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-exports.Schema = categorySchema;
+  // Define a new 'CategorySchema'
+  var categorySchema = {
+    _id: { type: String },
+    parent: {
+      type: String,
+      ref: 'ecCategory'
+    },
+    ancestors: [{
+      type: String,
+      ref: 'ecCategory'
+    }]
+  };
+  var CategorySchema = new Schema(categorySchema);
 
-// Create the 'ecCategory' model out of the 'CategorySchema'
-exports.Model = mongoose.model('ecCategory', CategorySchema);
-
-module.exports.wagner = function(wagner) {
+  // Create the 'ecCategory' model out of the 'CategorySchema'
+  var model = mongoose.model('ecCategory', CategorySchema);  
   wagner.factory('ecCategory', function() {
-    return exports.Model;
-  });
+    return model;
+  });  
   
   return {
-    ecCategory: exports.Model
+      Schema:     categorySchema,
+      Model:      model,
+      ecCategory: model
   };
-}
+};
+
