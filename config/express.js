@@ -17,7 +17,7 @@ var config = require('./config'),
   passport = require('passport');
 
 // Define the Express configuration method
-module.exports = function(db) {
+module.exports = function(db, wagner) {
   // Create a new Express application instance
   var app = express();
 
@@ -72,6 +72,7 @@ module.exports = function(db) {
   require('../app/routes/ys/ys_users.routes.js')(app);
   require('../app/routes/bo/bo_articles.routes.js')(app);
   require('../app/routes/oa/oa_todolists.routes.js')(app);
+  require('../app/routes/ec/ec_categorys.routes.js')(app, wagner);
   require('../app/routes/sps/sps_products.routes.js')(app);
   require('../app/routes/sps/sps_orders.routes.js')(app);
 

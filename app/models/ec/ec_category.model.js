@@ -20,8 +20,8 @@ module.exports = function(wagner) {
   };
   var CategorySchema = new Schema(categorySchema);
 
-  // Create the 'ecCategory' model out of the 'CategorySchema'
-  var model = mongoose.model('ecCategory', CategorySchema);  
+  // Create the 'ecCategory' model out of the 'CategorySchema', and collection name 'eccategorys'
+  var model = mongoose.model('ecCategory', CategorySchema, 'eccategorys');  
   wagner.factory('ecCategory', function() {
     return model;
   });  

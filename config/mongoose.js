@@ -2,12 +2,11 @@
 'use strict';
 
 // Load the module dependencies
-var  config = require('./config'),
-  wagner = require('wagner-core'),
+var  config = require('./config'),  
   mongoose = require('mongoose');
 
 // Define the Mongoose configuration method
-module.exports = function() {
+module.exports = function(wagner) {
   // Use Mongoose to connect to MongoDB
   var db = mongoose.connect(config.db, function(err,res) {
     if (err) { 
