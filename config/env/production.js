@@ -2,7 +2,7 @@
 var urihost = 
   process.env.MONGOLAB_URI || 
   process.env.MONGOHQ_URL || 
-  'mongodb://localhost';
+  'mongodb://localhost/mean';
 
 var facebook_client_id =
   process.env.FACEBOOK_CLIENT_ID || 
@@ -42,7 +42,7 @@ var google_callback_url =
 
 module.exports = {
   // Production configuration options
-  db: urihost + '/mean-book',
+  db: urihost,
   sessionSecret: 'productionSessiionSecrt',
   facebook: {
     clientID: facebook_client_id,
