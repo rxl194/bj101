@@ -32,7 +32,7 @@ module.exports = function() {
 
   // Load the routing files for SampleProjects
   if (process.env.BJ101_ENV_APP_M101JS === 'development') {
-    require('../app/models/en/en_movies.model');
+    require('../app/models/en/en_movies.model')(wagner);
   }
 
 
