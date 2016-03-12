@@ -3,6 +3,7 @@
 
 // Load the module dependencies
 var  config = require('./config'),
+  wagner = require('wagner-core'),
   mongoose = require('mongoose');
 
 // Define the Mongoose configuration method
@@ -27,6 +28,7 @@ module.exports = function() {
   require('../app/models/bo/bo_article.model');
   require('../app/models/sps/sps_product.model');
   require('../app/models/sps/sps_order.model');
+  require('../app/models/ec/ec_category.model').wagner(wagner);
 
   // Load the routing files for SampleProjects
   if (process.env.BJ101_ENV_APP_M101JS === 'development') {
