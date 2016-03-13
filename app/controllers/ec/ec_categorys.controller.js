@@ -12,9 +12,8 @@ var getErrorMessage = function(err) {
 	}
 };
 
-// Create a new controller method that retrieves a list of articles
-exports.list = function(wagner) {
-  
+// Create a new controller method that retrieves a list of categorys
+exports.list = function(wagner) {  
   return wagner.invoke(function(ecCategory) {
     return function(req, res) {
       // Use the model 'find' method to get a list of categorys
@@ -31,6 +30,33 @@ exports.list = function(wagner) {
       });
     };
   });
+};
 
+// Create a new controller method that returns an existing category
+exports.read = function(wagner) {
+  return wagner.invoke(function(ecCategory) {
+    return function(req, res) {
+      res.json(req.category);
+    };
+  });
+};
+
+// Create a new controller middleware that retrieves a single existing category
+exports.categoryByID = function(wagner) {
+  return wagner.invoke(function(ecCategory) {
+    return function(req, res, next, id) {
+      // Use the model 'findById' method to find a single category 
+      ecCategory.findById(id).exec(function(err, category) {
+        if (err) return next(err);
+        if (!category) return next(new Error('Failed to load category ' + id));
+
+        // If an category is found use the 'request' object to pass it to the next middleware
+        req.category = category;
+
+        // Call the next middleware
+        next();
+      });
+    };
+  });
 };
 
