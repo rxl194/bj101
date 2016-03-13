@@ -64,17 +64,7 @@ exports.init = function(rq,res) {
     var spsProduct = new SpsProduct(spsProducts[i]);
 
     // Try saving the spsProduct
-    spsProduct.save(function(err) {
-      if (err) {
-        // If an error occurs send the error message
-        return res.status(400).send({
-          message: getErrorMessage(err)
-        });
-      } else {
-        // Send a JSON representation of the spsProduct 
-        // res.json(spsProduct);
-      }
-    });
+    spsProduct.save();
   }
    
   // Send a JSON representation of the spsProducts
