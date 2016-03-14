@@ -2,7 +2,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  Category = require('./ec_category.model'),
+  ecCategory = require('./ec_category.model'),
   fx = require('../ut/ut_fx.util'),
   Schema = mongoose.Schema;
 
@@ -33,7 +33,7 @@ var productSchema = {
       }
     }
   },
-  category: Category.Schema,
+  category: ecCategory.Schema,
   internal: {
     approximatePriceUSD: Number
   }

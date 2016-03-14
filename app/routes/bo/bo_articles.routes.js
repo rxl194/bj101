@@ -3,21 +3,21 @@
 
 // Load the module dependencies
 var users = require('../../controllers/ys/ys_users.controller'),
-	articles = require('../../controllers/bo/bo_articles.controller');
+	boArticles = require('../../controllers/bo/bo_articles.controller');
 
 // Define the routes module' method
 module.exports = function(app) {
-	// Set up the 'articles' base routes 
+	// Set up the 'boArticles' base routes 
 	app.route('/api/bo/articles')
-	   .get(articles.list)
-	   .post(users.requiresLogin, articles.create);
+	   .get(boArticles.list)
+	   .post(users.requiresLogin, boArticles.create);
 	
 	// Set up the 'articles' parameterized routes
-	app.route('/api/bo/articles/:articleId')
-	   .get(articles.read)
-	   .put(users.requiresLogin, articles.hasAuthorization, articles.update)
-	   .delete(users.requiresLogin, articles.hasAuthorization, articles.delete);
+	app.route('/api/bo/articles/:boarticleId')
+	   .get(boArticles.read)
+	   .put(users.requiresLogin, boArticles.hasAuthorization, boArticles.update)
+	   .delete(users.requiresLogin, boArticles.hasAuthorization, boArticles.delete);
 
 	// Set up the 'articleId' parameter middleware   
-	app.param('articleId', articles.articleByID);
+	app.param('boarticleId', boArticles.articleByID);
 };

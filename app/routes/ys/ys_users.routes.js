@@ -2,31 +2,31 @@
 'use strict';
 
 // Load the module dependencies
-var users = require('../../controllers/ys/ys_users.controller'),
+var ysUsers = require('../../controllers/ys/ys_users.controller'),
 	passport = require('passport');
 
 // Define the routes module' method
 module.exports = function(app) {
 
   app.route('/api/ys/users')
-    .post(users.create)
-    .get(users.list);
+    .post(ysUsers.create)
+    .get(ysUsers.list);
 
-   app.route('/api/ys/users/:userId')
-     .get(users.read)
-     .put(users.update)
-     .delete(users.delete);
+   app.route('/api/ys/users/:ysuserId')
+     .get(ysUsers.read)
+     .put(ysUsers.update)
+     .delete(ysUsers.delete);
 
-  app.param('userId', users.userByID);
+  app.param('ysuserId', ysUsers.userByID);
 
 	// Set up the 'signup' routes 
 	app.route('/ys/signup')
-	   .get(users.renderSignup)
-	   .post(users.signup);
+	   .get(ysUsers.renderSignup)
+	   .post(ysUsers.signup);
 
 	// Set up the 'signin' routes 
 	app.route('/ys/signin')
-	   .get(users.renderSignin)
+	   .get(ysUsers.renderSignin)
 	   .post(passport.authenticate('local', {
 			successRedirect: '/',
 			failureRedirect: '/ys/signin',
@@ -34,7 +34,7 @@ module.exports = function(app) {
 	   }));
 
 	// Set up the 'signout' route
-	app.get('/ys/signout', users.signout);
+	app.get('/ys/signout', ysUsers.signout);
 
 	// Set up the Facebook OAuth routes 
 	app.get('/auth/facebook', passport.authenticate('facebook', {

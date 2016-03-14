@@ -16,12 +16,12 @@ module.exports = function(app) {
      .post(users.requiresLogin, spsProducts.create);
 
 	// Set up the 'products' parameterized routes
-	app.route('/api/sps/products/:productId')
+	app.route('/api/sps/products/:spsproductId')
 	   .get(spsProducts.read)
 	   .put(users.requiresLogin, spsProducts.hasAuthorization, spsProducts.update)
 	   .delete(users.requiresLogin, spsProducts.hasAuthorization, spsProducts.delete);
 
 	// Set up the 'productId' parameter middleware   
-	app.param('productId', spsProducts.spsProductByID);
+	app.param('spsproductId', spsProducts.spsProductByID);
 };
 
