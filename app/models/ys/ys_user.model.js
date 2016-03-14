@@ -6,8 +6,6 @@ var mongoose = require('mongoose'),
 	crypto = require('crypto'),
 	Schema = mongoose.Schema;
 
-module.exports = function(wagner) {  
-
   // Define a new 'UserSchema'
   var userSchema = {
     firstName: String,
@@ -114,15 +112,8 @@ module.exports = function(wagner) {
   });
 
   // Create the 'User' model out of the 'UserSchema'
-  var model = mongoose.model('ysUser', UserSchema);  
-  wagner.factory('ysUser', function() {
-    return model;
-  });    
+  var model = mongoose.model('ysUser', UserSchema);     
   
-  return {
-      Schema:  userSchema,
-      Model:   model,
-      ysUser:  model
-  };  
-
-};
+  module.exports.Schema = userSchema;
+  module.exports.Model  = model;
+ 

@@ -3,56 +3,48 @@
 
 // Load the module dependencies
 var mongoose = require('mongoose'),
-      Schema = mongoose.Schema;
+      Schema = mongoose.Schema;   
 
-module.exports = function(wagner) {      
-
-  // Define a new SportStore Order 'SpsOrderSchema'
-  var spsOrderSchema = {
-    id: {
-      type: Number
-    },
-    name: {
-      type: String,
-      required: 'SportStore Order name cannot be blank'
-    },
-    street: {
-      type: String,
-      required: 'SportStore Order street cannot be blank'
-    },
-    city: {
-      type: String,
-      required: 'SportStore Order city cannot be blank'
-    },
-    state: {
-      type: String,
-      required: 'SportStore Order state cannot be blank'
-    },
-    zip: {
-      type: String,
-      required: 'SportStore Order zip cannot be blank'
-    },
-    country: {
-      type: String,
-      required: 'SportStore Order country cannot be blank'
-    },
-    giftwrap: {
-      type: Boolean
-    },
-    cartData: [String]
-  };
-  var SpsOrderSchema = new Schema(spsOrderSchema);
-
-  // Create the 'SpsOrder' model out of the 'SpsOrderSchema '
-  var model = mongoose.model('spsOrder', SpsOrderSchema);
-  wagner.factory('spsOrder', function() {
-    return model;
-  });  
-  
-  return {
-      Schema:   spsOrderSchema,
-      Model:    model,
-      spsOrder: model
-  };    
+// Define a new SportStore Order 'SpsOrderSchema'
+var spsOrderSchema = {
+  id: {
+    type: Number
+  },
+  name: {
+    type: String,
+    required: 'SportStore Order name cannot be blank'
+  },
+  street: {
+    type: String,
+    required: 'SportStore Order street cannot be blank'
+  },
+  city: {
+    type: String,
+    required: 'SportStore Order city cannot be blank'
+  },
+  state: {
+    type: String,
+    required: 'SportStore Order state cannot be blank'
+  },
+  zip: {
+    type: String,
+    required: 'SportStore Order zip cannot be blank'
+  },
+  country: {
+    type: String,
+    required: 'SportStore Order country cannot be blank'
+  },
+  giftwrap: {
+    type: Boolean
+  },
+  cartData: [String]
 };
+var SpsOrderSchema = new Schema(spsOrderSchema);
+
+// Create the 'SpsOrder' model out of the 'SpsOrderSchema '
+var model = mongoose.model('spsOrder', SpsOrderSchema);
+
+module.exports.Schema = spsOrderSchema;
+module.exports.Model  = model;
+    
 

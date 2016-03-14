@@ -3,7 +3,8 @@
 
 // Load the module dependencies
 var  config = require('./config'),  
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+  _ = require('underscore');
 
 // Define the Mongoose configuration method
 module.exports = function(wagner) {
@@ -21,20 +22,28 @@ module.exports = function(wagner) {
     // we're connected!
   //  console.log('mongodb connected');
   //});
+  
+  var mongooseModels = {};
 
   // Load the application models 
-  require('../app/models/ys/ys_user.model')(wagner);
-  require('../app/models/bo/bo_article.model')(wagner);
-  require('../app/models/sps/sps_product.model')(wagner);
-  require('../app/models/sps/sps_order.model')(wagner);
-  require('../app/models/ec/ec_category.model')(wagner);
+  mongooseModels["ysUser"] = require('../app/models/ys/ys_user.model');
+  mongooseModels["boArticle"] = require('../app/models/bo/bo_article.model');
+  mongooseModels["spsProduct"] = require('../app/models/sps/sps_product.model');
+  mongooseModels["spsOrder"] = require('../app/models/sps/sps_order.model');
+  mongooseModels["ecCategory"] = require('../app/models/ec/ec_category.model');
 
   // Load the routing files for SampleProjects
   if (process.env.BJ101_ENV_APP_M101JS === 'development') {
-    require('../app/models/en/en_movies.model')(wagner);
+    mongooseModels["enMovie"] = require('../app/models/en/en_movies.model');
   }
-
-
+  
+  // To ensure DRY-ness, register factories in a loop
+  _.each(mongooseModels, function(value, key) {
+    wagner.factory(key, function() {
+      return value.Model;
+    });
+  });  
+    
   // Return the Mongoose connection instance
   return db;
 };
