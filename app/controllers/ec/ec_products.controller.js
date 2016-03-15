@@ -44,7 +44,7 @@ exports.listByProductCatId = function(wagner) {
       }
 
       ecProduct.
-        find({ 'eccategory.ancestors': req.params.id }).
+        find({ 'eccategory.ancestors': req.params.eccategoryId }).
         sort(sort).
         exec(ut_controllers.handleMany.bind(null, null, res));
     };

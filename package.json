@@ -44,6 +44,6 @@
     "supertest": "~0.13.0"
   },
   "scripts": {
-    "test": "mocha app/tests/ec/ec_category.model.tests.js"
+    "test": "mocha app/tests/ec/ec_product.model.tests.js"
   }  
 }

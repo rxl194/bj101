@@ -28,7 +28,7 @@ var productSchema = {
       required: true,
       set: function(v) {
         this.internal.approximatePriceUSD =
-          this.price.amount / (fx()[v] || 1);
+          (this.price.amount || 0) / (fx()[v] || 1);
         return v;
       }
     }
