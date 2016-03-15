@@ -33,7 +33,7 @@ var productSchema = {
       }
     }
   },
-  category: ecCategory.Schema,
+  eccategory: ecCategory.Schema,
   internal: {
     approximatePriceUSD: Number
   }

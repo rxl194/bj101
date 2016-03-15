@@ -14,5 +14,8 @@ module.exports = function(app, wagner) {
 	// Set up the 'products' parameterized routes
 	app.route('/api/ec/products/id/:ecproductId')
 	   .get(ecproducts.listById(wagner));
+     
+  app.route('/api/ec/products/eccategory/:eccategoryId')
+      .get(ecproducts.listByProductCatId(wagner));
           
 };

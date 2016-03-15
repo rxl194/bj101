@@ -33,5 +33,23 @@ exports.listById = function(wagner) {
   });
 };
 
+exports.listByProductCatId = function(wagner) {
+  return wagner.invoke(function(ecProduct) {
+    return function(req, res) {
+      var sort = { name: 1 };
+      if (req.query.price === "1") {
+        sort = { 'internal.approximatePriceUSD': 1 };
+      } else if (req.query.price === "-1") {
+        sort = { 'internal.approximatePriceUSD': -1 };
+      }
+
+      ecProduct.
+        find({ 'eccategory.ancestors': req.params.id }).
+        sort(sort).
+        exec(ut_controllers.handleMany.bind(null, null, res));
+    };
+  });  
+};
+
 
 
