@@ -26,9 +26,13 @@ module.exports.handleOne = function(property, res, error, result) {
       json({ error: 'Not found' });
   }
 
-  var json = {};
-  json[property] = result;
-  res.json(json);
+  if (property) { 
+    var json = {};
+    json[property] = result;
+    res.json(json);
+  } else {
+    res.json(result);
+  }
 };
 
 module.exports.handleMany = function(property, res, error, result) {
@@ -38,7 +42,11 @@ module.exports.handleMany = function(property, res, error, result) {
       json({ error: error.toString() });
   }
 
-  var json = {};
-  json[property] = result;
-  res.json(json);
+  if (property) {
+    var json = {};
+    json[property] = result;
+    res.json(json);
+  } else {
+    res.json(result);
+  }
 };

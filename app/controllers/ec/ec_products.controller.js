@@ -27,8 +27,8 @@ exports.list = function(wagner) {
 exports.listById = function(wagner) {
   return wagner.invoke(function(ecProduct) {
     return function(req, res) {
-      ecProduct.findOne({ _id: req.params.id },
-        ut_controllers.handleOne.bind(null, 'product', res));
+      ecProduct.findOne({ _id: req.params.ecproductId },
+        ut_controllers.handleOne.bind(null, null, res));
     };
   });
 };
