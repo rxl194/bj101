@@ -13,7 +13,7 @@ var ecUserSchema = {
   profile: {
     picture: {
       type: String,
-      required: true,
+      required: false,
       match: /^http:\/\//i
     }
   },

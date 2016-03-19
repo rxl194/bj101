@@ -74,6 +74,7 @@ module.exports = function(db, wagner) {
   require('../app/routes/oa/oa_todolists.routes.js')(app);
   require('../app/routes/ec/ec_categorys.routes.js')(app, wagner);
   require('../app/routes/ec/ec_products.routes.js')(app, wagner);
+  require('../app/routes/ec/ec_users.routes.js')(app, wagner);
   require('../app/routes/sps/sps_products.routes.js')(app);
   require('../app/routes/sps/sps_orders.routes.js')(app);
 
