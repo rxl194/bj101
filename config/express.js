@@ -65,18 +65,21 @@ module.exports = function(db, wagner) {
   // Configure the Passport middleware
   app.use(passport.initialize());
   app.use(passport.session());
+  
+  // Load the payment methods
+  require('../app/controllers/ys/ys_stripe.payments')(wagner);
 
   // Load the routing files
-  require('../app/routes/index.routes.js')(app);
-  require('../app/routes/ex/ex_proangular.routes.js')(app);
-  require('../app/routes/ys/ys_users.routes.js')(app);
-  require('../app/routes/bo/bo_articles.routes.js')(app);
-  require('../app/routes/oa/oa_todolists.routes.js')(app);
-  require('../app/routes/ec/ec_categorys.routes.js')(app, wagner);
-  require('../app/routes/ec/ec_products.routes.js')(app, wagner);
-  require('../app/routes/ec/ec_users.routes.js')(app, wagner);
-  require('../app/routes/sps/sps_products.routes.js')(app);
-  require('../app/routes/sps/sps_orders.routes.js')(app);
+  require('../app/routes/index.routes')(app);
+  require('../app/routes/ex/ex_proangular.routes')(app);
+  require('../app/routes/ys/ys_users.routes')(app);
+  require('../app/routes/bo/bo_articles.routes')(app);
+  require('../app/routes/oa/oa_todolists.routes')(app);
+  require('../app/routes/ec/ec_categorys.routes')(app, wagner);
+  require('../app/routes/ec/ec_products.routes')(app, wagner);
+  require('../app/routes/ec/ec_users.routes')(app, wagner);
+  require('../app/routes/sps/sps_products.routes')(app);
+  require('../app/routes/sps/sps_orders.routes')(app);
 
   // Load the routing files for SampleProjects
   if (process.env.BJ101_ENV_APP_M101JS === 'development') {

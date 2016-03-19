@@ -23,6 +23,7 @@
     "passport-local": "~1.0.0",
     "passport-twitter": "~1.0.2",
     "socket.io": "~1.1.0",
+    "stripe": "^4.5.0",
     "superagent": "^1.8.0",
     "wagner-core": "^0.2.0"
   },
@@ -45,5 +46,5 @@
   },
   "scripts": {
     "test": "mocha app/tests/ec/ec_product.model.tests.js"
-  }  
+  }
 }
