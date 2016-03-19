@@ -32,7 +32,8 @@ module.exports = function(wagner) {
   mongooseModels.spsOrder = require('../app/models/sps/sps_order.model');
   mongooseModels.ecCategory = require('../app/models/ec/ec_category.model');
   mongooseModels.ecProduct = require('../app/models/ec/ec_product.model');
-
+  mongooseModels.ecUser = require('../app/models/ec/ec_user.model');
+  
   // Load the routing files for SampleProjects
   if (process.env.BJ101_ENV_APP_M101JS === 'development') {
     mongooseModels.enMovie = require('../app/models/en/en_movies.model');
