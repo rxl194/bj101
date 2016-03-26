@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<section ng-controller="cexProangularCh21Ctrl">
+
+    <div class="panel panel-primary">
+        <h3 class="panel-heading">Products</h3>
+        <ng-include src="'/cex/proangular/ch21/L14/tableView.html'" ng-show="displayMode == 'list'"></ng-include>
+        <ng-include src="'/cex/proangular/ch21/L14/editorView.html'" ng-show="displayMode == 'edit'"></ng-include>
+    </div>
+
+</section>
+

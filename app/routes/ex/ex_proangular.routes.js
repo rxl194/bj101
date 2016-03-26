@@ -5,7 +5,10 @@
 module.exports = function(app) {
   var ex_proangular = require('../../controllers/ex/proangular/ex_proangular.controller');
   app.get('/ex/proangular', ex_proangular.render);
-
+  
+  var ex_proangular_ch21 = require('../../controllers/ex/proangular/ex_proangular.ch21.controller');
+  app.get('/ex/proangular/ch21', ex_proangular_ch21.render); 
+ 
   var ex_sportsstore = require('../../controllers/ex/proangular/ex_proangular.sportsstore.controller');
   app.get('/ex/proangular/sportsstore', ex_sportsstore.render);
 
