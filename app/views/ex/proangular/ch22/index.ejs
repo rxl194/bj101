@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+<head>
+  <!-- Use the 'title' property to render a page title  -->
+  <title><%= title %></title>
+  <link href="/cex/proangular/css/bootstrap.css" rel="stylesheet" />
+  <link href="/cex/proangular/css/bootstrap-theme.css" rel="stylesheet" />
+  
+</head>
+<body>
+  <!-- Render the user object -->
+  <script type="text/javascript">
+    window.user = <%- cys_user || 'null' %>;
+  </script>
+
+  <!-- Render AngularJS views  -->
+  <section ng-view></section>
+
+  <!-- Load local libraries -->
+  <script type="text/javascript" src="/lib/angular/angular.js"></script>
+  <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>   
+
+  <!-- Load the users module -->
+  <script type="text/javascript" src="/cys/users/cys_users.module.js"></script>
+  <script type="text/javascript" src="/cys/users/services/authentication.client.service.js"></script>
+ 
+  <!-- Load the cex-proangular-ch21 module -->
+  <script type="text/javascript" src="/cex/proangular/ch21/cex_proangular_ch21.module.js"></script>
+  <script type="text/javascript" src="/cex/proangular/ch22/controllers/cex_proangular_ch22.controller.js"></script>
+  <script type="text/javascript" src="/cex/proangular/ch22/config/cex_proangular_ch22.routes.js"></script>
+  <script type="text/javascript" src="/cex/proangular/ch21/directive/cex_proangular_ch21.directives.js"></script>
+ 
+   <!-- Bootstrap AngularJS application -->
+  <script type="text/javascript" src="/cex/proangular/ch21/cex_proangular_main_ch21.js"></script>
+
+</body>
+</html>
+
