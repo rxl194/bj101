@@ -21,6 +21,15 @@ module.exports = function(app) {
 	   .put(users.requiresLogin, spsProducts.hasAuthorization, spsProducts.update)
 	   .delete(users.requiresLogin, spsProducts.hasAuthorization, spsProducts.delete);
 
+  app.route('/api/ex/proangulars/ch21')
+     .get(spsProducts.list)
+     .post(spsProducts.create);
+
+	app.route('/api/ex/proangulars/ch21/:spsproductId')
+	   .get(spsProducts.read)
+     .put(spsProducts.update)
+     .delete(spsProducts.delete);
+
 	// Set up the 'productId' parameter middleware   
 	app.param('spsproductId', spsProducts.spsProductByID);
 };
