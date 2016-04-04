@@ -4,9 +4,9 @@
 // Create the 'cex_proangular_ch21' module
 angular.module('cex_proangular_ch21')
 .constant("cexProangularCh21BaseUrl", "/api/ex/proangulars/ch21/")
-.controller("cexProangularCh21Ctrl", [
-  '$scope', '$http', '$resource', '$locationProvider', 'cexProangularCh21BaseUrl', 
-  function($scope, $http, $resource, $locationProvider, baseUrl) {
+.controller("cexProangularCh22Ctrl", [
+  '$scope', '$http', '$resource', '$location', 'cexProangularCh21BaseUrl', 
+  function($scope, $http, $resource, $location, baseUrl) {
     
     $scope.displayMode = "list";
     $scope.currentProduct = null;
@@ -27,7 +27,7 @@ angular.module('cex_proangular_ch21')
     }
 
     $scope.createProduct = function (product) {
-      product.description = "ex/proangulars/ch21/"
+      product.description = "ex/proangulars/ch22/"
       new $scope.productsResource(product).$save().then(function(newProduct) {
         $scope.products.push(newProduct);
         $location.path("/list");
