@@ -18,10 +18,7 @@
                             ng-click="deleteProduct(item)">
                         Delete
                     </button>
-                    <button class="btn btn-xs btn-primary"
-                            ng-click="editroduct(item)">
-                        Edit
-                    </button>
+                    <a ng-href="#/edit/{{item._id}}" class="btn btn-xs btn-primary">Edit</a>
                     <cex-proangular-ch21-increment
                       item="item" property-name="price" restful="true"
                       method-name="$update" />
