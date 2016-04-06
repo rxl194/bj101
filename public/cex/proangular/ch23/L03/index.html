@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app='cex_proangular_ch21'>
+<head>
+    <title>Products</title>
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../../../../lib/angular/angular.js"></script>
+    <script src="../../../../lib/angular-route/angular-route.js"></script>
+    <script src="../../../../lib/angular-resource/angular-resource.js"></script>
+    <script src="../angular-animate.js"></script>
+    <script src="../cex_proangular_ch21.module.js"></script>
+    <script src="../../ch22/L13/cex_proangular_ch22.controller.js"></script>
+    <script src="../../ch22/L13/cex_proangular_ch22.routes.js"></script>
+    <script src="../../ch21/directive/cex_proangular_ch21.directives.js"></script>
+    <style type="text/css">
+      .ngFade.ng-enter { transition: 2s linear all;  opacity: 0; }
+      .ngFade.ng-enter-active { opacity: 1; }
+      .ngFade.ng-leave { transition: 2s linear all; opacity: 1;  }
+      .ngFade.ng-leave-active { opacity: 0; }      
+    </style>    
+</head>
+<body ng-controller="cexProangularCh22Ctrl">
+    <div class="panel panel-primary">
+        <h3 class="panel-heading">Products</h3>      
+        <div ng-view class="ngFade"></div>        
+    </div>     
+</body>
+</html>
