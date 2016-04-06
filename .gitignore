@@ -1,5 +1,5 @@
 node_modules/*
-run_node_server
+run_gae_server
 test_node
 dump
 dump.*

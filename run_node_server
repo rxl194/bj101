@@ -1,0 +1,33 @@
+#!/bin/csh
+setenv NODE_ENV "development"
+#setenv NODE_ENV "production"
+
+setenv BJ101_ENV_APP_M101JS "development"
+
+set local_host_url = "http://localhost:3000"
+
+setenv MONGOLAB_URI ""
+
+# mongodump --host h:p -u <u> -p <p> -d <d>
+
+#  mongo <d>  --host <h>  --port <p> --username <u> --password <p>
+
+setenv FACEBOOK_CLIENT_ID ""
+setenv FACEBOOK_CLIENT_SECRET ""
+setenv FACEBOOK_CALLBACK_URL "$local_host_url/auth/facebook/callback"
+
+setenv TWITTER_CLIENT_ID ""
+setenv TWITTER_CLIENT_SECRET ""
+setenv TWITTER_CALLBACK_URL "$local_host_url/auth/twitter/callback"
+
+setenv GOOGLE_CLIENT_ID ""
+setenv GOOGLE_CLIENT_SECRET ""
+setenv GOOGLE_CALLBACK_URL "$local_host_url/auth/google/callback"
+
+setenv STRIPE_API_KEY ""
+
+#node server
+grunt
+#grunt debug
+
+
