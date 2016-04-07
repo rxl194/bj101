@@ -3,7 +3,7 @@ describe("Controller Test", function () {
   // Arrange
   var mockScope = {};
   var controller;
-  var backend, mockInterval, mockTimeout;
+  var backend, mockInterval, mockTimeout, mockLog;
 
   beforeEach(angular.mock.module("exampleApp"));
   
@@ -16,15 +16,17 @@ describe("Controller Test", function () {
   }));  
 
   beforeEach(angular.mock.inject(function ($controller, $rootScope, $http,
-    $interval, $timeout ) {
+    $interval, $timeout, $log) {
       mockScope = $rootScope.$new();
       mockInterval = $interval;
       mockTimeout = $timeout;
+      mockLog = $log;
       controller = $controller("defaultCtrl", {
           $scope: mockScope,
           $http: $http,
           $interval: mockInterval,
-          $timeout: mockTimeout
+          $timeout: mockTimeout,
+          $log: mockLog
       });
       backend.flush();
   }));
@@ -65,4 +67,8 @@ describe("Controller Test", function () {
     mockTimeout.flush(5000);
     expect(mockScope.timerCounter).toEqual(1);
   });
+  
+  it("Writes log messages", function () {
+    expect(mockLog.log.logs.length).toEqual(1);
+  });  
 });
