@@ -51,5 +51,22 @@ exports.listByProductCatId = function(wagner) {
   });  
 };
 
+exports.searchTextByQuery = function(wagner) {
+  return wagner.invoke(function(ecProduct) {
+    return function(req, res) {
+      ecProduct.
+        find(
+          { $text : { $search : req.params.query } },
+          { score : { $meta: 'textScore' } }).
+        sort({ score: { $meta : 'textScore' } }).
+        limit(10).
+        exec(ut_controllers.handleMany.bind(null, null, res));        
+    };
+  });    
+};
+
+
+
+
 
 

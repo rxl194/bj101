@@ -40,6 +40,8 @@ var productSchema = {
 };
 var ProductSchema = new Schema(productSchema);
 
+ProductSchema.index( {name: 'text'} );
+
 var currencySymbols = {
   'USD': '$',
   'EUR': '€',

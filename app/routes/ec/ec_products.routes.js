@@ -17,5 +17,8 @@ module.exports = function(app, wagner) {
      
   app.route('/api/ec/products/eccategory/:eccategoryId')
       .get(ecproducts.listByProductCatId(wagner));
+      
+  app.route('/api/ec/products/text/:query')
+      .get(ecproducts.searchTextByQuery(wagner));      
           
 };
