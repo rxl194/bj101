@@ -15,6 +15,12 @@ module.exports = function(app, wagner) {
 	app.route('/api/ec/categorys/id/:eccategoryId')
 	   .get(ecCategorys.read(wagner));
      
-	// Set up the 'categoryId' parameter middleware   
+	app.route('/api/ec/categorys/parent/:ecParCatId')
+	   .get(ecCategorys.read(wagner));     
+     
+	// Set up the 'eccategoryId' parameter middleware   
 	app.param('eccategoryId', ecCategorys.categoryByID(wagner));     
+  
+	// Set up the 'ecParCatId' parameter middleware   
+	app.param('ecParCatId', ecCategorys.pareCatByID(wagner));      
 };

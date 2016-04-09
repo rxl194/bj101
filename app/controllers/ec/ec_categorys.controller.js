@@ -60,3 +60,23 @@ exports.categoryByID = function(wagner) {
   });
 };
 
+// Create a new controller middleware that retrieves a categorys by parent ecCategoryId
+exports.pareCatByID = function(wagner) {
+  return wagner.invoke(function(ecCategory) {
+    return function(req, res, next, id) {
+      // Use the model 'find' method to find a single category 
+      ecCategory.find({parent: id}).exec(function(err, categorys) {
+        if (err) return next(err);
+        if (!categorys) return next(new Error('Failed to load categorys with parentId ' + id));
+
+        // If an category is found use the 'request' object to pass it to the next middleware
+        req.category = categorys;
+
+        // Call the next middleware
+        next();
+      });
+    };
+  });
+};
+
+
