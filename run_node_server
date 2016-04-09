@@ -25,6 +25,7 @@ setenv GOOGLE_CLIENT_SECRET ""
 setenv GOOGLE_CALLBACK_URL "$local_host_url/auth/google/callback"
 
 setenv STRIPE_API_KEY ""
+setenv OPENEXCHANGERATES_API_KEY ""
 
 #node server
 grunt
