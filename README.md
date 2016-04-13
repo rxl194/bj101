@@ -29,7 +29,7 @@ sudo service mongod start
 
 # npm/bower setup
  sudo npm install -g js-beautify
- sudo npm install -g bower
+ sudo npm install -g bower browserify
  sudo ln -s /usr/bin/nodejs /usr/bin/node
  npm install; bower install;
  npm update; bower update;
