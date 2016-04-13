@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+<head>
+  <!-- Use the 'title' property to render a page title  -->
+  <title><%= title %></title>
+  <link href="/cex/umdbm101/css/cex_umdbm101_mean-retail.css" rel="stylesheet" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Render the user object -->
+  <script type="text/javascript">
+    window.user = <%- cys_user || 'null' %>;
+  </script>
+
+  <!-- Render AngularJS views  -->
+  <section ng-view></section>
+
+  <!-- Load local libraries -->
+  <script type="text/javascript" src="/lib/angular/angular.js"></script>
+  <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+
+  <!-- Load the users module -->
+  <script type="text/javascript" src="/cys/users/cys_users.module.js"></script>
+  <script type="text/javascript" src="/cys/users/services/authentication.client.service.js"></script>
+
+  <!-- Load the coa-todolists module -->
+  <script type="text/javascript" src="/cex/umdbm101/cex_umdbm101.module.js"></script>
+  <script type="text/javascript" src="/cex/umdbm101/controllers/cex_umdbm101.usermenu.controller.js"></script>
+  <script type="text/javascript" src="/cex/umdbm101/config/cex_umdbm101.routes.js"></script>
+  <script type="text/javascript" src="/cex/umdbm101/directives/cex_umdbm101.directives.js"></script>
+
+  <!-- Bootstrap AngularJS application -->
+  <script type="text/javascript" src="/cex/umdbm101/cex_umdbm101_main.js"></script>
+</body>
+</html>
+
