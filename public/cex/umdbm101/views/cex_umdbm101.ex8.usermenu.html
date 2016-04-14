@@ -7,17 +7,15 @@
       MEAN Retail
     </div>
     <div class="user-info">
-      <div class="checkout" ng-show="user.user">
+      <div class="checkout" ng-show="authentication.user">
         <a ng-href="#/checkout">
           <i class="fa fa-shopping-cart"></i>
         </a>
       </div>
-      <div class="user" ng-show="user.user">
-       User
-       user.user
-        <img ng-src="{{user.user.profile.picture}}" />
+      <div class="user" ng-show="authentication.user">
+        <img ng-src="{{authentication.user.profile.picture}}" />
       </div>
-      <div class="login" ng-show="!user.user">
+      <div class="login" ng-show="!authentication.user">
         <a href="/auth/facebook?redirect=%2Fex%2Fumdbm101">
           <img src="//i.stack.imgur.com/LKMP7.png">
         </a>
