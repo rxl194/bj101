@@ -24,11 +24,13 @@ module.exports = function(app) {
 	   .get(ysUsers.renderSignup)
 	   .post(ysUsers.signup);
 
-	// Set up the 'signin' routes 
+  var successRedirectUrl = '/';
+
+  // Set up the 'signin' routes 
 	app.route('/ys/signin')
 	   .get(ysUsers.renderSignin)
 	   .post(passport.authenticate('local', {
-			successRedirect: '/',
+			successRedirect: successRedirectUrl,
 			failureRedirect: '/ys/signin',
 			failureFlash: true
 	   }));
@@ -37,12 +39,17 @@ module.exports = function(app) {
 	app.get('/ys/signout', ysUsers.signout);
 
 	// Set up the Facebook OAuth routes 
-	app.get('/auth/facebook', passport.authenticate('facebook', {
-		failureRedirect: '/ys/signin'
-	}));
+	app.get('/auth/facebook', function(req, res, next) {
+    if (req.query.redirect) {
+      successRedirectUrl = req.query.redirect;
+    }
+    passport.authenticate('facebook', {
+      failureRedirect: '/ys/signin'
+    })(req, res, next);
+  });
 	app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 		failureRedirect: '/ys/signin',
-		successRedirect: '/'
+		successRedirect: successRedirectUrl
 	}));
 
 	// Set up the Twitter OAuth routes 
@@ -51,7 +58,7 @@ module.exports = function(app) {
 	}));
 	app.get('/auth/twitter/callback', passport.authenticate('twitter', {
 		failureRedirect: '/ys/signin',
-		successRedirect: '/'
+		successRedirect: successRedirectUrl
 	}));
 
 	// Set up the Google OAuth routes 
@@ -64,7 +71,7 @@ module.exports = function(app) {
 	}));
 	app.get('/auth/google/callback', passport.authenticate('google', {
 		failureRedirect: '/ys/signin',
-		successRedirect: '/'
+		successRedirect: successRedirectUrl
 	}));
 
 };
