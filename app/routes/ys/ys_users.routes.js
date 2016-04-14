@@ -42,15 +42,19 @@ module.exports = function(app) {
 	app.get('/auth/facebook', function(req, res, next) {
     if (req.query.redirect) {
       successRedirectUrl = req.query.redirect;
+    } else {
+      successRedirectUrl = '/';
     }
     passport.authenticate('facebook', {
       failureRedirect: '/ys/signin'
     })(req, res, next);
   });
-	app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-		failureRedirect: '/ys/signin',
-		successRedirect: successRedirectUrl
-	}));
+	app.get('/auth/facebook/callback', function(req, res, next) {
+    passport.authenticate('facebook', {
+      failureRedirect: '/ys/signin',
+      successRedirect: successRedirectUrl
+    })(req, res, next);
+  });
 
 	// Set up the Twitter OAuth routes 
 	app.get('/auth/twitter', passport.authenticate('twitter', {

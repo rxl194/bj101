@@ -13,10 +13,12 @@
         </a>
       </div>
       <div class="user" ng-show="user.user">
+       User
+       user.user
         <img ng-src="{{user.user.profile.picture}}" />
       </div>
       <div class="login" ng-show="!user.user">
-        <a href="/auth/facebook">
+        <a href="/auth/facebook?redirect=%2Fex%2Fumdbm101">
           <img src="//i.stack.imgur.com/LKMP7.png">
         </a>
       </div>
