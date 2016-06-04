@@ -7,6 +7,10 @@ book1: MEAN Web Development, By: Amos Q. Haviv, Publisher: Packt Publishing, Pub
 # cex/proangular cex_proangular
 book2: Pro AngularJS, By: Adam Freeman, Publisher: Apress,  Pub. Date: April 01, 2014, 
         Print ISBN-10: 1-4302-6448-9,  ISBN-13: 978-1-4302-6448-4
+        
+# cex/angularjs01
+book3: AngularJS, By: Rodrigo Branas; Chandermani; Matt Frisbie; Amos Q. Haviv, Pub. Date: April 22, 2016
+       Web ISBN-13: 978-1-78646-736-2, Print ISBN-13: 978-1-78646-578-8
 
 # ubuntu install mongodb
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
