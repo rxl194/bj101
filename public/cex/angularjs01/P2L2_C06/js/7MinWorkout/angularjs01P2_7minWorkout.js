@@ -46,7 +46,7 @@ angular.module('angularjs01P2_7minWorkout')
       }),
       duration: $scope.workoutPlan.restBetweenExercise
     };
-    workoutHistoryTracker.startTracking();
+    angularJs01P2WorkoutHistoryTracker.startTracking();
     $scope.currentExerciseIndex = -1;
     startExercise($scope.workoutPlan.exercises[0]);
   };
@@ -115,7 +115,7 @@ angular.module('angularjs01P2_7minWorkout')
   }
   
   var workoutComplete = function () {
-    workoutHistoryTracker.endTracking(true);
+    angularJs01P2WorkoutHistoryTracker.endTracking(true);
     $location.path('/finish');
   }  
 

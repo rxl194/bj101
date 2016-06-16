@@ -11,12 +11,16 @@
     <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/angularjs01P2.css" />
 </head>
-<body ng-app="angularjs01P2_appapp">
+<body ng-app="angularjs01P2_appapp" ng-controller="AngularJs01P2RootController">
     <div class="navbar navbar-default navbar-fixed-top top-navbar">
       <div class="container app-container">
         <div class="navbar-header">
-            <h1>7 Minute Workout</h1>
+          <!--<h1>7 Minute Workout</h1>-->
+          <div class="navbar-brand">7 Minute Workout</div>
         </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a ng-click="showWorkoutHistory()" title="Workout History">History</a></li>
+        </ul>        
       </div>
     </div>
     <div class="container body-content app-container">
@@ -29,6 +33,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
     <script src="../../../lib/vendor/angular-media-player.js"></script>
     <script src="js/angularjs01P2_app.js"></script>
+    <script src="js/angularjs01P2_root.js"></script>
     <script src="js/7MinWorkout/angularjs01P2_7minWorkout.js"></script>
     <script src="js/7MinWorkout/angularjs01P2_7minWorkout_filter.js"></script>
     <script src="js/7MinWorkout/angularjs01P2_7minWorkout_services.js"></script>
