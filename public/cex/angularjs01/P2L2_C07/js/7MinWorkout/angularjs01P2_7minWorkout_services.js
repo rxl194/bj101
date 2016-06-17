@@ -3,7 +3,13 @@
 /* Services */
 
 angular.module('angularjs01P2_7minWorkout')
-.factory('angularJs01P2WorkoutHistoryTracker', ['$rootScope', function ($rootScope) {
+.value("angularJs01P2AppEvents", {
+  workout: { exerciseStarted: "event:workout:exerciseStarted" }
+})
+.factory('angularJs01P2WorkoutHistoryTracker', 
+           ['$rootScope', 'angularJs01P2AppEvents',
+  function ($rootScope, angularJs01P2AppEvents) {
+
   var maxHistoryItems = 20;   //Track for last 20 exercise
   var workoutHistory = [];
   var currentWorkoutLog = null;
@@ -30,6 +36,11 @@ angular.module('angularjs01P2_7minWorkout')
   service.getHistory = function () {
    return workoutHistory;
   }
+  
+  $rootScope.$on(angularJs01P2AppEvents.workout.exerciseStarted, function (e, args) {
+    currentWorkoutLog.lastExercise = args.title;
+    ++currentWorkoutLog.exercisesDone;
+  });  
 
   $rootScope.$on("$routeChangeSuccess", function (e, args) {
    if (currentWorkoutLog) {

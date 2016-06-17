@@ -4,8 +4,8 @@
 
 angular.module('angularjs01P2_7minWorkout')
 .controller('AngularJs01P2WorkoutController', 
-           ['$scope', '$interval', '$location', 'angularJs01P2WorkoutHistoryTracker', 
-  function ($scope,   $interval,    $location,   angularJs01P2WorkoutHistoryTracker) {
+           ['$scope', '$interval', '$location', 'angularJs01P2WorkoutHistoryTracker', 'angularJs01P2AppEvents',
+  function ($scope,   $interval,    $location,   angularJs01P2WorkoutHistoryTracker,  angularJs01P2AppEvents) {
   function WorkoutPlan(args) {
     this.exercises = [];
     this.name = args.name;
@@ -57,6 +57,7 @@ angular.module('angularjs01P2_7minWorkout')
 
     if (exercisePlan.details.name != 'rest') {
       $scope.currentExerciseIndex++;
+      $scope.$emit(angularJs01P2AppEvents.workout.exerciseStarted, exercisePlan.details);
     }
 
     exerciseIntervalPromise = startExerciseTimeTracking();
