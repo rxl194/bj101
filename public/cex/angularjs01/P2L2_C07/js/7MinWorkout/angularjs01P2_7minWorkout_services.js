@@ -7,13 +7,14 @@ angular.module('angularjs01P2_7minWorkout')
   workout: { exerciseStarted: "event:workout:exerciseStarted" }
 })
 .factory('angularJs01P2WorkoutHistoryTracker', 
-           ['$rootScope', 'angularJs01P2AppEvents',
-  function ($rootScope, angularJs01P2AppEvents) {
+           ['$rootScope', 'angularJs01P2AppEvents', 'localStorageService',
+  function ($rootScope,    angularJs01P2AppEvents,   localStorageService) {
 
-  var maxHistoryItems = 20;   //Track for last 20 exercise
-  var workoutHistory = [];
-  var currentWorkoutLog = null;
-  var service = {};
+  var maxHistoryItems = 20   //We only track for last 20 exercise
+  , storageKey = "angularJs01P2Workouthistory"
+  , workoutHistory = localStorageService.get(storageKey) || []
+  , currentWorkoutLog = null
+  , service = {};
 
   service.startTracking = function () {
    currentWorkoutLog = {
@@ -25,21 +26,13 @@ angular.module('angularjs01P2_7minWorkout')
      workoutHistory.shift();
    }
    workoutHistory.push(currentWorkoutLog);
+   localStorageService.add(storageKey, workoutHistory);
   };
-
-  service.endTracking = function (completed) {
-   currentWorkoutLog.completed = completed;
-   currentWorkoutLog.endedOn = new Date().toISOString();
-   currentWorkoutLog = null;
-  };
-
-  service.getHistory = function () {
-   return workoutHistory;
-  }
   
   $rootScope.$on(angularJs01P2AppEvents.workout.exerciseStarted, function (e, args) {
     currentWorkoutLog.lastExercise = args.title;
     ++currentWorkoutLog.exercisesDone;
+    localStorageService.add(storageKey, workoutHistory);
   });  
 
   $rootScope.$on("$routeChangeSuccess", function (e, args) {
@@ -47,6 +40,17 @@ angular.module('angularjs01P2_7minWorkout')
      service.endTracking(false); // End the current tracking if in progress the route changes.
    }
   });
+  
+  service.endTracking = function (completed) {
+    currentWorkoutLog.completed = completed;
+    currentWorkoutLog.endedOn = new Date().toISOString();
+    currentWorkoutLog = null;
+    localStorageService.add(storageKey, workoutHistory);
+  };
+
+  service.getHistory = function () {
+    return workoutHistory;
+  }  
 
   return service;
 }]);
