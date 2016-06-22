@@ -59,7 +59,6 @@ angular.module('angularjs01P2_7minWorkout')
       $scope.currentExerciseIndex++;
       $scope.$emit(angularJs01P2AppEvents.workout.exerciseStarted, exercisePlan.details);
     }
-
     exerciseIntervalPromise = startExerciseTimeTracking();
   };
 
@@ -104,27 +103,27 @@ angular.module('angularjs01P2_7minWorkout')
     promise.then(function () {
       var next = getNextExercise($scope.currentExercise);
       if (next) {
-          startExercise(next);
+        startExercise(next);
       }
       else {
-          workoutComplete();
+        workoutComplete();
       }
     }, function (error) {
       console.log('Inteval promise cancelled. Error reason -' + error);
     });
     return promise;
   }
-  
-  var workoutComplete = function () {
-    angularJs01P2WorkoutHistoryTracker.endTracking(true);
-    $location.path('/finish');
-  }  
 
   $scope.onKeyPressed = function (event) {
     if (event.which == 80 || event.which == 112) {        // 'p' or 'P' key to toggle pause and resume.
       $scope.pauseResumeToggle();
     }
   };
+  
+  var workoutComplete = function () {
+    angularJs01P2WorkoutHistoryTracker.endTracking(true);
+    $location.path('/finish');
+  }    
 
 //$scope.$watch('currentExerciseDuration', function (nVal) {
 //    if (nVal == $scope.currentExercise.duration) {
