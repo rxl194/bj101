@@ -3,7 +3,7 @@
 /* Model classes */
 angular.module('angularjs01P2_appapp')
 .factory('Angularjs01P2Exercise', function () {
-  function Exercise(args) {
+  function Angularjs01P2Exercise(args) {
     this.name = args.name;
     this.title = args.title;
     this.description = args.description;
@@ -13,19 +13,19 @@ angular.module('angularjs01P2_appapp')
     this.nameSound = args.nameSound;
     this.procedure = args.procedure;
   }
-  return Exercise;
+  return Angularjs01P2Exercise;
 });
 
 angular.module('angularjs01P2_appapp')
 .factory('Angularjs01P2WorkoutPlan', function () {
-  function WorkoutPlan(args) {
+  function Angularjs01P2WorkoutPlan(args) {
     this.exercises = [];
     this.name = args.name;
     this.title = args.title;
     this.description = args.description;
     this.restBetweenExercise = args.restBetweenExercise;
   };
-  WorkoutPlan.prototype.totalWorkoutDuration = function () {
+  Angularjs01P2WorkoutPlan.prototype.totalWorkoutDuration = function () {
     if (this.exercises.length == 0) return 0;
     var total = 0;
     angular.forEach(this.exercises, function (exercise) {
@@ -33,5 +33,5 @@ angular.module('angularjs01P2_appapp')
     });
     return (this.restBetweenExercise ? this.restBetweenExercise : 0) * (this.exercises.length - 1) + total;
   }
-  return WorkoutPlan;
+  return Angularjs01P2WorkoutPlan;
 });
