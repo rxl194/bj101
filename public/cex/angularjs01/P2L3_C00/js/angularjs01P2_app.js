@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularjs01P2_appapp', ['ngRoute', 'ngSanitize', '7minWorkout','angularjs01P2_WorkoutBuilder', 'mediaPlayer', 'ui.bootstrap', 'LocalStorageModule', 'ngAnimate']).
+angular.module('angularjs01P2_appapp', ['ngRoute', 'ngSanitize', 'angularjs01P2_7minWorkout','angularjs01P2_WorkoutBuilder', 'mediaPlayer', 'ui.bootstrap', 'LocalStorageModule', 'ngAnimate']).
 config(function ($routeProvider, $sceDelegateProvider) {
   var partial_pre = '/cex/angularjs01/P2L3_C00/partials';
   $routeProvider.when('/start', { templateUrl: partial_pre+'/start.html' });
