@@ -8,7 +8,6 @@ angular.module('angularjs01P2_7minWorkout')
 .factory('angularJs01P2WorkoutHistoryTracker', 
            ['$rootScope', 'angularJs01P2AppEvents', 'localStorageService',
   function ($rootScope,    angularJs01P2AppEvents,   localStorageService) {
-
   var maxHistoryItems = 20   //We only track for last 20 exercise
   , storageKey = "angularJs01P2Workouthistory"
   , workoutHistory = localStorageService.get(storageKey) || []
@@ -16,13 +15,9 @@ angular.module('angularjs01P2_7minWorkout')
   , service = {};
 
   service.startTracking = function () {
-    currentWorkoutLog = {
-     startedOn: new Date().toISOString(),
-     completed: false,
-     exercisesDone: 0
-    };
+    currentWorkoutLog = { startedOn: new Date().toISOString(), completed: false, exercisesDone: 0 };
     if (workoutHistory.length >= maxHistoryItems) {
-     workoutHistory.shift();
+      workoutHistory.shift();
     }
     workoutHistory.push(currentWorkoutLog);
     localStorageService.add(storageKey, workoutHistory);
@@ -53,5 +48,3 @@ angular.module('angularjs01P2_7minWorkout')
 
   return service;
 }]);
-
-
