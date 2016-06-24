@@ -2,9 +2,6 @@
 
 /* Services */
 angular.module('angularjs01P2_7minWorkout')
-.value("angularJs01P2AppEvents", {
-  workout: { exerciseStarted: "event:workout:exerciseStarted" }
-})
 .factory('angularJs01P2WorkoutHistoryTracker', 
            ['$rootScope', 'angularJs01P2AppEvents', 'localStorageService',
   function ($rootScope,    angularJs01P2AppEvents,   localStorageService) {

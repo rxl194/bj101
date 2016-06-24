@@ -2,7 +2,7 @@
 
 angular.module('angularjs01P2_appapp', ['ngRoute', 'ngSanitize', 'angularjs01P2_7minWorkout','angularjs01P2_WorkoutBuilder', 'mediaPlayer', 'ui.bootstrap', 'LocalStorageModule', 'ngAnimate']).
 config(function ($routeProvider, $sceDelegateProvider) {
-  var partial_pre = '/cex/angularjs01/P2L3_C00/partials';
+  var partial_pre = '/cex/angularjs01/P2L3_C02/partials';
   $routeProvider.when('/start', { templateUrl: partial_pre+'/start.html' });
   $routeProvider.when('/workout', { templateUrl: partial_pre+'/workout.html', controller: 'AngularJs01P2WorkoutController' });
   $routeProvider.when('/finish', { templateUrl: partial_pre+'/finish.html' });
@@ -14,13 +14,13 @@ config(function ($routeProvider, $sceDelegateProvider) {
       templateUrl: partial_pre+'/workoutbuilder/workouts.html',
       leftNav: partial_pre+'/workoutbuilder/left-nav-main.html',
       topNav: partial_pre+'/workoutbuilder/top-nav.html',
-      controller: 'AngularJs01P2WorkoutListController'
+      controller: 'angularjs01P2WorkoutListController'
   });
   $routeProvider.when('/builder/exercises', {
       templateUrl: partial_pre+'/workoutbuilder/exercises.html',
       leftNav: partial_pre+'/workoutbuilder/left-nav-main.html',
       topNav: partial_pre+'/workoutbuilder/top-nav.html',
-      controller: 'AngularJs01P2ExerciseListController'
+      controller: 'angularjs01P2ExerciseListController'
   });
   $routeProvider.when('/builder/workouts/new', {
       templateUrl: partial_pre+'/workoutbuilder/workout.html',
