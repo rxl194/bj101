@@ -2,8 +2,13 @@
 
 angular.module('angularjs01P2_WorkoutBuilder')
 .controller('angularjs01P2ExercisesNavController',
-         ['$scope', 'angularjs01P2SharedWorkoutService',
-function ($scope,   angularjs01P2SharedWorkoutService) {     
+         ['$scope', 'angularjs01P2SharedWorkoutService', 'angularjs01P2WorkoutBuilderService',
+function ( $scope,   angularjs01P2SharedWorkoutService,   angularjs01P2WorkoutBuilderService) {
+
+  $scope.addExercise = function (exercise) {
+    angularjs01P2WorkoutBuilderService.addExercise(exercise);
+  }
+
   var init = function () {
     $scope.exercises = angularjs01P2SharedWorkoutService.getExercises();
   };
