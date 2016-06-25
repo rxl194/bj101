@@ -2,7 +2,7 @@
 
 angular.module('angularjs01P2_appapp', ['ngRoute', 'ngSanitize', 'angularjs01P2_7minWorkout','angularjs01P2_WorkoutBuilder', 'mediaPlayer', 'ui.bootstrap', 'LocalStorageModule', 'ngAnimate']).
 config(function ($routeProvider, $sceDelegateProvider) {
-  var partial_pre = '/cex/angularjs01/P2L3_C02/partials';
+  var partial_pre = '/cex/angularjs01/P2L3_C03/partials';
   $routeProvider.when('/start', { templateUrl: partial_pre+'/start.html' });
   $routeProvider.when('/workout', { templateUrl: partial_pre+'/workout.html', controller: 'AngularJs01P2WorkoutController' });
   $routeProvider.when('/finish', { templateUrl: partial_pre+'/finish.html' });
