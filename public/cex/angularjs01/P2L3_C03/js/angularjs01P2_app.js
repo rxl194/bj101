@@ -36,6 +36,7 @@ config(function ($routeProvider, $sceDelegateProvider) {
   $routeProvider.when('/builder/workouts/:id', {
       templateUrl: partial_pre+'/workoutbuilder/workout.html',
       leftNav: partial_pre+'/workoutbuilder/left-nav-exercises.html',
+      controller: 'angularjs01P2WorkoutDetailController',
       topNav: partial_pre+'/workoutbuilder/top-nav.html',
       resolve: {
         angularjs01P2SelectedWorkout: ['angularjs01P2WorkoutBuilderService', '$route', '$location', function (angularjs01P2WorkoutBuilderService, $route, $location) {
