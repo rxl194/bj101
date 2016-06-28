@@ -26,11 +26,26 @@ config(function ($routeProvider, $sceDelegateProvider) {
       templateUrl: partial_pre+'/workoutbuilder/workout.html',
       leftNav: partial_pre+'/workoutbuilder/left-nav-exercises.html',
       topNav: partial_pre+'/workoutbuilder/top-nav.html',
+      controller: 'WorkoutDetailController',
+      resolve: {
+        angularjs01P2SelectedWorkout: ['angularjs01P2WorkoutBuilderService', function (angularjs01P2WorkoutBuilderService) {
+          return angularjs01P2WorkoutBuilderService.startBuilding();
+        }],
+      }
   });
   $routeProvider.when('/builder/workouts/:id', {
       templateUrl: partial_pre+'/workoutbuilder/workout.html',
       leftNav: partial_pre+'/workoutbuilder/left-nav-exercises.html',
       topNav: partial_pre+'/workoutbuilder/top-nav.html',
+      resolve: {
+        angularjs01P2SelectedWorkout: ['angularjs01P2WorkoutBuilderService', '$route', '$location', function (angularjs01P2WorkoutBuilderService, $route, $location) {
+          var workout = angularjs01P2WorkoutBuilderService.startBuilding($route.current.params.id);
+          if (!workout) {
+            $location.path('/builder/workouts');    //If the workout not found redirect to workout list
+          }
+          return workout;
+        }],
+      }
   });
   $routeProvider.when('/builder/exercises/new', { templateUrl: partial_pre+'/workoutbuilder/exercise.html' });
   $routeProvider.when('/builder/exercises/:id', { templateUrl: partial_pre+'/workoutbuilder/exercise.html' });

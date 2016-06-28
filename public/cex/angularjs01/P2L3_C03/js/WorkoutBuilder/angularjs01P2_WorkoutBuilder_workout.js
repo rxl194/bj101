@@ -12,3 +12,13 @@ function ($scope,   angularjs01P2SharedWorkoutService,   $location) {
   };
   init();
 }]);
+
+angular.module('angularjs01P2_WorkoutBuilder')
+.controller('angularjs01P2WorkoutDetailController',
+         ['$scope', 'angularjs01P2WorkoutBuilderService', 'angularjs01P2SelectedWorkout',
+function ($scope,    angularjs01P2WorkoutBuilderService,   angularjs01P2SelectedWorkout) {
+  var init = function () {
+    $scope.workout = angularjs01P2SelectedWorkout; // Resolved workout
+  };
+  init();
+}]);
