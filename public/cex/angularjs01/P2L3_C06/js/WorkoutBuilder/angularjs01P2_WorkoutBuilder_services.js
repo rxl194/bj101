@@ -30,6 +30,13 @@ angular.module('angularjs01P2_WorkoutBuilder')
     buildingWorkout.exercises.push({ details: exercise, duration: 30 });
   };
 
+  service.save = function () {
+    var workout = newWorkout ? angularjs01P2SharedWorkoutService.addWorkout(buildingWorkout)
+                        : angularjs01P2SharedWorkoutService.updateWorkout(buildingWorkout);
+    newWorkout = false;
+    return workout;
+  };  
+
   service.moveExerciseTo = function (exercise, toIndex) {
     if (toIndex < 0 || toIndex >= buildingWorkout.exercises) return;
     var currentIndex = buildingWorkout.exercises.indexOf(exercise);

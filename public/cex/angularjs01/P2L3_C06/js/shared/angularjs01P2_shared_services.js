@@ -258,6 +258,32 @@ angular.module('angularjs01P2_appapp')
       if (workout.name === name) result = workout;
     });
     return result;
+  };
+  
+  service.updateWorkout = function (workout) {
+    for (var i = 0; i < workouts.length; i++) {
+      if (workouts[i].name === workout.name) {
+        workouts[i] = workout;
+        break;
+      }
+    }
+    return workout;
+  };
+
+  service.addWorkout = function (workout) {
+    if (workout.name) {
+      workouts.push(workout);
+      return workout;
+    }
+  }
+  service.deleteWorkout = function (workoutName) {
+    var workoutIndex;
+    angular.forEach(workouts, function (w, index) {
+      if (w.name === workoutName) {
+        workoutIndex = index;
+      }
+    });
+    workouts.splice(workoutIndex, 1);
   };  
 
   var init = function () {
