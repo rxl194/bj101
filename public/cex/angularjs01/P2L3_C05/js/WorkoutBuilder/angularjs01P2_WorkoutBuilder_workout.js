@@ -21,6 +21,21 @@ function ($scope,    angularjs01P2WorkoutBuilderService,   angularjs01P2Selected
     angularjs01P2WorkoutBuilderService.removeExercise(exercise);
   };
   
+
+  $scope.$watch('formWorkout.exerciseCount', function (newValue) {
+    if (newValue) {
+      newValue.$setValidity("count", $scope.workout.exercises.length > 0);
+    }
+  });
+
+  $scope.$watch('workout.exercises.length', function (newValue, oldValue) {
+    if (newValue != oldValue) {
+      $scope.formWorkout.exerciseCount.$dirty = true;
+      $scope.formWorkout.$setDirty();
+      $scope.formWorkout.exerciseCount.$setValidity("count", newValue > 0);
+    }
+  });  
+  
   /* var restWatch = $scope.$watch('formWorkout.restBetweenExercise', function (newValue) {
       // Conversion logic courtesy http://stackoverflow.com/questions/596467/how-do-i-convert-a-number-to-an-integer-in-javascript
       if (newValue) {
