@@ -15,12 +15,20 @@ function ($scope,   angularjs01P2SharedWorkoutService,   $location) {
 
 angular.module('angularjs01P2_WorkoutBuilder')
 .controller('angularjs01P2WorkoutDetailController',
-         ['$scope', 'angularjs01P2WorkoutBuilderService', 'angularjs01P2SelectedWorkout',
-function ($scope,    angularjs01P2WorkoutBuilderService,   angularjs01P2SelectedWorkout) {
+         ['$scope', 'angularjs01P2WorkoutBuilderService', 'angularjs01P2SelectedWorkout', '$location', '$routeParams',
+function ($scope,    angularjs01P2WorkoutBuilderService,   angularjs01P2SelectedWorkout,   $location,   $routeParams) {
   $scope.removeExercise = function (exercise) {
     angularjs01P2WorkoutBuilderService.removeExercise(exercise);
   };
   
+
+  $scope.save = function () {
+    $scope.submitted = true;      // Will force validations
+    if ($scope.formWorkout.$invalid) return;
+    $scope.workout = angularjs01P2WorkoutBuilderService.save();
+    $scope.formWorkout.$setPristine();
+    $scope.submitted = false;
+  }
 
   $scope.$watch('formWorkout.exerciseCount', function (newValue) {
     if (newValue) {
@@ -48,6 +56,16 @@ function ($scope,    angularjs01P2WorkoutBuilderService,   angularjs01P2Selected
           restWatch(); //De-register the watch.
       }
   });   */
+
+  $scope.hasError = function (modelController, error) {
+    return (modelController.$dirty || $scope.submitted) && error;
+  }
+
+  $scope.reset = function () {
+    $scope.workout = angularjs01P2WorkoutBuilderService.startBuilding($routeParams.id);
+    $scope.formWorkout.$setPristine();
+    $scope.submitted = false;      // Will force validations
+  };
 
   $scope.moveExerciseTo = function (exercise, location) {
     angularjs01P2WorkoutBuilderService.moveExerciseTo(exercise, location);

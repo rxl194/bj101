@@ -255,7 +255,7 @@ angular.module('angularjs01P2_appapp')
   service.getWorkout = function (name) {
     var result = null;
     angular.forEach(service.getWorkouts(), function (workout) {
-      if (workout.name === name) result = workout;
+      if (workout.name === name) result = angular.copy(workout);
     });
     return result;
   };
