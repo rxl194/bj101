@@ -91,6 +91,15 @@ function ($scope,    angularjs01P2WorkoutBuilderService,   angularjs01P2Selected
                       { title: "4 minutes 30 seconds", value: 270 },
                       { title: "4 minutes 45 seconds", value: 285 },
                       { title: "5 minutes", value: 300 }];  
+
+  $scope.canDeleteWorkout = function () {
+    return angularjs01P2WorkoutBuilderService.canDeleteWorkout();
+  }
+
+  $scope.deleteWorkout = function () {
+    angularjs01P2WorkoutBuilderService.delete();
+    $location.path('/builder/workouts/');
+  };
   
   var init = function () {
     $scope.workout = angularjs01P2SelectedWorkout; // Resolved workout

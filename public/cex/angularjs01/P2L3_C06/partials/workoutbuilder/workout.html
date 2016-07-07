@@ -77,8 +77,12 @@
         <img ng-src="{{exercise.details.image ? exercise.details.image : '../P2_img/running.png'}}"/>
       </div>
       <div class="details">
-        <select class="select-duration form-control" name="duration" ng-model="exercise.duration" ng-options="duration.value as duration.title for duration in durations">
-        </select>
+        <ng-form name="formDuration">
+          <select class="select-duration form-control" name="duration" ng-model="exercise.duration" ng-options="duration.value as duration.title for duration in durations" required>
+            <option value="">Select Duration</option>
+          </select>
+          <label ng-show="hasError(formDuration.duration,formDuration.duration.$error.required)" class="text-danger">Time duration is required.</label>
+        </ng-form>
       </div>
     </div>
     <div class="order">

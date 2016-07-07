@@ -43,6 +43,15 @@ angular.module('angularjs01P2_WorkoutBuilder')
     buildingWorkout.exercises.splice(toIndex, 0, buildingWorkout.exercises.splice(currentIndex, 1)[0]);
   }
 
+  service.canDeleteWorkout = function () {
+    return !newWorkout;
+  }
+
+  service.delete = function () {
+    if (newWorkout) return; // A new workout cannot be deleted.
+    angularjs01P2SharedWorkoutService.deleteWorkout(buildingWorkout.name);
+  }
+
   return service;
 }]);
 
