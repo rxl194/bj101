@@ -12,6 +12,13 @@ book2: Pro AngularJS, By: Adam Freeman, Publisher: Apress,  Pub. Date: April 01,
 book3: AngularJS, By: Rodrigo Branas; Chandermani; Matt Frisbie; Amos Q. Haviv, Pub. Date: April 22, 2016
        Web ISBN-13: 978-1-78646-736-2, Print ISBN-13: 978-1-78646-578-8
 
+# app/views/ex/mongnode2
+book4: Web Development with MongoDB and NodeJS - Second Edition
+       By: Mithun Satheesh; Bruno Joseph D'mello; Jason Krol
+       Pub. Date: October 30, 2015
+       Print ISBN-13: 978-1-78528-752-7
+       Web ISBN-13: 978-1-78528-745-9
+
 # ubuntu install mongodb
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
