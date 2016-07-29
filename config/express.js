@@ -85,6 +85,7 @@ module.exports = function(db, wagner) {
   if (process.env.BJ101_ENV_APP_M101JS === 'development') {
     require('../app/routes/ex/m101js/ex_m101js.w01.routes.js')(app);
     require('../app/routes/ex/umdbm101/ex_umdbm101.routes.js')(app);
+    require('../app/routes/ex/mongnode2/ex_mongnode2.routes.js')(app);
   }
 
   // Configure static file serving
