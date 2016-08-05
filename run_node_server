@@ -3,6 +3,7 @@ setenv NODE_ENV "development"
 #setenv NODE_ENV "production"
 
 setenv BJ101_ENV_APP_M101JS "development"
+#setenv BJ101_ENV_CONF_EX_APP "mongnode2"
 
 set local_host_url = "http://localhost:3000"
 
