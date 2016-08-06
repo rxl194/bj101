@@ -3,7 +3,8 @@
 
 // Create a new 'index' controller method
 exports.index = function(req, res) {
-  res.send('The image:index controller ' + req.params.image_id); 
+  // res.send('The image:index controller ' + req.params.image_id); 
+  res.render('image');
 };
 
 exports.create = function(req, res) {
