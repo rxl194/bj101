@@ -11,9 +11,10 @@ exports.index = function(req, res) {
   }
 
   // Use the 'response' object to render the 'index' view with a 'title' and 'userFullName' properties
-  res.render('ex/mongnode2/index', {
+  res.render('index', {
     title: myTitle,
     cys_user: JSON.stringify(req.user),
   });
+  // res.send('The home:index controller');
 };
 
