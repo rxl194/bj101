@@ -10,6 +10,7 @@ var path = require('path'),
   cookieParser = require('cookie-parser'),
   morgan = require('morgan'),
   methodOverride = require('method-override'),
+  moment = require('moment'),
   errorHandler = require('errorhandler');
 
 // Define the Express configuration method
@@ -36,7 +37,12 @@ module.exports = function(db, wagner) {
   app.engine('handlebars', exphbs.create({
     defaultLayout: 'main',
     layoutsDir: app.get('views') + '/../layouts',
-    partialsDir: [app.get('views') + '/../partials']
+    partialsDir: [app.get('views') + '/../partials'],
+    helpers: {
+      timeago: function(timestamp) {
+        return moment(timestamp).startOf('minute').fromNow();  
+      }
+    }      
   }).engine);
   app.set('view engine', 'handlebars');
   
