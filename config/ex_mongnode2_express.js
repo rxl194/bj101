@@ -11,6 +11,7 @@ var path = require('path'),
   morgan = require('morgan'),
   methodOverride = require('method-override'),
   moment = require('moment'),
+  multer = require('multer'),
   errorHandler = require('errorhandler');
 
 // Define the Express configuration method
@@ -22,6 +23,7 @@ module.exports = function(db, wagner) {
   var server = http.createServer(app);
   
   app.use(morgan('dev'));
+  app.use(multer({ dest: path.join(__dirname, './public/upload/temp')}));
 
   // Use the 'body-parser' and 'method-override' middleware functions
   app.use(bodyParser.urlencoded({
