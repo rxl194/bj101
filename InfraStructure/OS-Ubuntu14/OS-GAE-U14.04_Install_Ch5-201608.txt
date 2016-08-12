@@ -1,0 +1,536 @@
+
+
+##    OpenStack in Action
+##    By: V. K. Cody Bumgardner
+##    Publisher: Manning Publications
+##    Pub. Date: March 28, 2016
+##    Print ISBN-13: 978-1-61729-216-3
+##    Print ISBN-10: 1-61729-216-8
+
+// 5.2. Modifying interface configuration in /etc/network/interfaces
+// Ignore this step for now
+$ sudo vi /etc/network/interfaces
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The Public/Node network interface
+
+auto em1
+iface em1 inet static
+        address 10.33.2.50
+        netmask 255.255.255.0
+        network 10.33.2.0
+        broadcast 10.33.2.255
+        gateway 10.33.2.1
+        dns-nameservers 8.8.8.8
+        dns-search testco.com
+
+# The OpenStack Internal Interface
+auto em2
+iface em2 inet static
+        address 192.168.0.50
+        netmask 255.255.255.0
+
+// 5.3. Refreshing networking settings
+$ sudo ifdown em2 && sudo ifup em2
+
+// 5.4. Checking the network for updates
+$ ifconfig -a
+
+// 5.5. Updating and upgrading packages
+$ sudo apt-get -y update
+$ sudo apt-get -y upgrade
+
+
+// 5.7. Installing RabbitMQ
+$ sudo apt-get -y install rabbitmq-server
+
+// 5.8. Configuring the RabbitMQ guest password
+$ sudo rabbitmqctl change_password guest openstack1
+
+// 5.9. Verifying the RabbitMQ status
+$ sudo rabbitmqctl status
+
+// 5.10. Installing MySQL binaries
+$ sudo apt-get -y install python-mysqldb mysql-server
+
+// 5.11. Modifying /etc/mysql/my.cnf 
+$ sudo vi /etc/mysql/my.cnf
+bind-address            = 0.0.0.0
+
+// 5.12. Restart and verify that MySQL is running and accessible
+$ sudo service mysql restart
+$ sudo service mysql status
+$ mysqladmin -u root -h localhost -p status
+
+// 5.14. Installing the Keystone package
+$ sudo apt-get -y install keystone
+$ id keystone
+
+// 5.15. Creating a database and granting access
+mysql> CREATE DATABASE keystone;
+mysql> GRANT ALL ON keystone.* TO 'keystone_dbu'@'localhost' \
+    -> IDENTIFIED BY 'openstack1';
+mysql> show grants for 'keystone_dbu'@'localhost';
+
+// 5.17. Modifying /etc/keystone/keystone.conf
+[sql]
+#connection = sqlite:////var/lib/keystone/keystone.db
+connection = mysql://keystone_dbu:openstack1@localhost:3306/keystone
+mysql_sql_mode=TRADITIONAL
+
+// 5.18. Restarting Keystone
+$ sudo service keystone restart
+
+// 5.19. Initializing the data store
+$ sudo keystone-manage db_sync
+
+/****************
+** Initializing Keystone variables 
+****************/
+
+// 5.20. Creating ~/keystone.auth
+
+#This file contains environmental variables used to access Keystone
+
+# Host address
+#HOST_IP=10.138.0.3 #The Management Address
+
+# Keystone definitions
+KEYSTONE_REGION=RegionOne
+ADMIN_PASSWORD=admin_pass
+SERVICE_PASSWORD=service_pass
+export SERVICE_TOKEN="ADMIN"
+export SERVICE_ENDPOINT="http://10.138.0.3:35357/v2.0"
+SERVICE_TENANT_NAME=service
+
+// 5.21. Setting and confirming keystone.auth variables
+
+$ source ~/keystone.auth
+$ set | grep SERVICE
+SERVICE_ENDPOINT=http://10.138.0.3:35357/v2.0
+SERVICE_PASSWORD=service_pass
+SERVICE_TENANT_NAME=service
+SERVICE_TOKEN=ADMIN
+
+// 5.22. Checking Keystone operation
+$ keystone discover
+
+
+/****************
+** Creating Keystone services and endpoints 
+****************/
+
+// 5.23. Creating the Keystone service
+$ keystone service-create --name=keystone \
+    --type=identity --description="Identity Service"
+
+// 5.24. Creating the Keystone endpoint
+
+$ keystone endpoint-create \
+ --region RegionOne \
+ --service=keystone \
+ --publicurl=http://104.198.0.96:5000/v2.0 \
+ --internalurl=http://10.138.0.3:5000/v2.0 \
+ --adminurl=http://10.138.0.3:35357/v2.0
+
+
+/****************
+** Creating tenants
+****************/
+
+// 5.25. Creating the admin tenant
+$ keystone tenant-create --name=admin --description "Admin Tenant"
+
+
+// 5.26. Creating the service tenant
+$ keystone tenant-create --name=service --description="Service Tenant"
+
+// 5.27. Creating the admin user
+$ keystone user-create --name=admin \
+            --pass=openstack1 \
+            --email=admin@testabc1.com
+
+// 5.28. Creating the admin role
+$ keystone role-create --name=admin
+
+// 5.29. Creating the Member role
+$ keystone role-create --name=Member
+
+// 5.30. Assigning the admin role
+$ keystone user-role-add --user=admin --role=admin --tenant=admin
+
+// 5.31. Verify admin roles in admin tenant
+$ keystone user-role-list --user=admin --tenant=admin
+
+# log: /var/log/keystone
+# log:  /var/log/upstart/
+
+/***************
+** 5.2.2. Deploying the Image Service (Glance) 
+***************/
+
+/************
+** Creating the Glance data store (MYSQL)
+*************/
+$ mysql -u root  -p 
+mysql> CREATE DATABASE glance;
+mysql> GRANT ALL ON glance.* TO 'glance_dbu'@'localhost'  IDENTIFIED BY 'openstack1';
+mysql> SHOW GRANTS FOR 'glance_dbu'@'localhost';
+mysql> quit
+
+/************
+** Configuring a Glance Keystone user
+*************/
+
+// 5.33. Creating a glance user
+$ keystone user-create --name=glance \
+            --pass="openstack1" \
+            --email=glance@testabc1.com
+
+// 5.34. Assigning admin role to glance user in service tenant
+$ keystone user-role-add --user=glance --role-id=admin --tenant=service
+$ keystone user-role-list --user=glance --tenant=service
+
+/************
+** Creating the Glance service and endpoint 
+*************/
+// 5.35. Creating the Glance service 
+$ keystone service-create --name=glance --type=image \
+--description="Image Service"
+ 
+// 5.36. Creating the Glance endpoint
+$ keystone endpoint-create \
+  --region RegionOne \
+  --service=glance \
+  --publicurl=http://104.198.0.96:9292 \
+  --internalurl=http://10.138.0.3:9292 \
+  --adminurl=http://10.138.0.3:9292
+
+
+/************
+** Installing Glance 
+*************/
+// 5.37. Installing Glance binaries
+$ sudo apt-get -y install glance glance-api \
+    glance-registry python-glanceclient \
+    glance-common
+
+// 5.38. Modifying /etc/glance/glance-api.conf 
+[database]
+#sqlite_db = /var/lib/glance/glance.sqlite
+connection = mysql://glance_dbu:openstack1@localhost/glance
+mysql_sql_mode = TRADITIONAL
+
+#rabbit_host = localhost
+rabbit_host = 10.138.0.3
+rabbit_password = openstack1
+
+# Directory that the Filesystem backend store
+# writes image data to
+filesystem_store_datadir = /var/lib/glance/images/
+
+// 5.39. Modifying /etc/glance/glance-registry.conf
+[database]
+#sqlite_db = /var/lib/glance/glance.sqlite
+connection = mysql://glance_dbu:openstack1@localhost/glance
+mysql_sql_mode = TRADITIONAL
+
+// 5.40. Restarting glance-api and glance-registry
+$ sudo service glance-api restart
+$ sudo service glance-registry restart
+
+// 5.41. Initializing the data store
+$ sudo glance-manage db_sync
+
+** UTF8 error
+$ mysql --user=root -p
+mysql> use glance;
+mysql> alter table migrate_version convert to \
+character set utf8 collate utf8_unicode_ci;
+mysql> quit;
+
+// do glance_db_sync again
+$ sudo glance-manage db_sync
+
+// 5.42. Downloading a prebuilt image
+$  wget http://download.cirros-cloud.net/0.3.2/cirros-0.3.2-x86_64-disk.img
+
+// 5.43. Creating a Glance image
+$ glance --os-username=admin --os-password openstack1 \
+ --os-tenant-name=admin \
+ --os-auth-url=http://104.198.0.96:5000/v2.0  \
+  image-create \
+ --name="Cirros 0.3.2" \
+ --is-public=true \
+ --disk-format=qcow2 \
+ --container-format=bare \
+ --file cirros-0.3.2-x86_64-disk.img
+
+** Glance logs (/var/log/glance)  
+** /var/log/upstart/
+
+/************
+** 5.3. Deploying the Block Storage (Cinder) service 
+*************/
+
+// 5.44. Create the Cinder database and grant access
+$ mysql --user=root -p
+mysql> CREATE DATABASE cinder;
+mysql> GRANT ALL ON cinder.* TO 'cinder_dbu'@'%' \
+   IDENTIFIED BY 'openstack1';
+mysql> SHOW GRANTS FOR 'cinder_dbu'@'%';
+mysql> quit
+
+// 5.45. Creating a cinder user
+$ keystone user-create --name=cinder \
+            --pass="openstack1" \
+            --email=cinder@testabc1.com
+
+// 5.46. Assigning admin role to cinder user in service tenant
+$ keystone user-role-add --user=cinder --role-id=admin --tenant=service
+$ keystone user-role-list --user=cinder --tenant=service
+
+// 5.47. Creating a Cinder service
+$ keystone service-create --name=cinder --type=volume \
+ --description="Block Storage"
+
+// 5.48. Creating a Cinder endpoint
+$ keystone endpoint-create \
+  --region RegionOne \
+  --service=cinder \
+  --publicurl=http://104.198.0.96:8776/v1/%\(tenant_id\)s \
+  --internalurl=http://10.138.0.3:8776/v1/%\(tenant_id\)s \
+  --adminurl=http://10.138.0.3:8776/v1/%\(tenant_id\)s
+
+/************
+** 5.3.4. Installing Cinder 
+*************/
+
+// 5.49. Installing Cinder
+$ sudo apt-get -y install cinder-api cinder-scheduler
+
+// 5.50. Modifying /etc/cinder/cinder.conf
+
+$ sudo vi /etc/cinder/cinder.conf
+[DEFAULT]
+rpc_backend = rabbit
+rabbit_host = 10.138.0.3
+rabbit_password = openstack1
+
+[database]
+connection = mysql://cinder_dbu:openstack1@localhost/cinder
+
+[keystone_authtoken]
+auth_uri = http://10.138.0.3:35357
+admin_tenant_name = service
+admin_password = openstack1
+auth_protocol = http
+admin_user = cinder
+
+// 5.51. Restarting Cinder
+$ sudo service cinder-scheduler restart
+$ sudo service cinder-api restart
+
+// 5.52. Initializing the data store
+$ sudo cinder-manage db sync
+
+** Cinder logs (/var/log/cinder) 
+**  OpenStack: /var/log/upstart/
+
+// 5.53. Creating a database and granting access
+$ mysql --user=root -p
+mysql> CREATE DATABASE neutron;
+mysql> GRANT ALL ON neutron.* TO 'neutron_dbu'@'localhost' IDENTIFIED BY 'openstack1';
+mysql> GRANT ALL ON neutron.* TO 'neutron_dbu'@'%' IDENTIFIED BY 'openstack1';
+mysql> SHOW GRANTS FOR 'neutron_dbu'@'%';
+mysql> quit;
+
+// 5.54. Creating a neutron user
+$ keystone user-create --name=neutron --pass="openstack1" --email=neutron@testabc1.com
+
+// 5.55. Assigning the admin role to the neutron user in the service tenant
+$ keystone user-role-add --user=neutron --role=admin --tenant=service
+$ keystone user-role-list --user=neutron --tenant=service
+
+
+// 5.56. Creating the Neutron service  and endpoint 
+$ keystone service-create --name=neutron --type=network \
+ --description="OpenStack Networking Service" 
+
+// 5.57. Creating the Neutron endpoint
+$ keystone endpoint-create \
+  --region RegionOne \
+  --service=neutron \
+  --publicurl=http://104.198.0.96:9696 \
+  --internalurl=http://10.138.0.3:9696 \
+  --adminurl=http://10.138.0.3:9696
+
+/************
+** 5.4.3. Installing Neutron 
+*************/
+
+// 5.58. Install Neutron
+$ sudo apt-get install -y neutron-server
+
+// 5.59. Modifying /etc/neutron/neutron.conf 
+$ keystone tenant-list // Make note of "admin" tenant-id, created at 5.25
+
+$ sudo vi /etc/neutron/neutron.conf 
+  [DEFAULT]
+  core_plugin = neutron.plugins.ml2.plugin.Ml2Plugin
+  service_plugins = router,firewall,lbaas,vpnaas,metering
+  allow_overlapping_ips = True
+
+  rabbit_host = 10.138.0.3
+  rabbit_password = openstack1
+  
+# nova_url = http://10.138.0.3:8774/v2
+  nova_url = http://104.198.0.96:8774/v2
+  nova_admin_username = admin
+  nova_admin_tenant_id = a449482b68fc4447b4e983b8675f4d97
+  nova_admin_auth_url = http://104.198.0.96:35357/v2.0
+
+  [keystone_authtoken]
+  auth_uri = http://104.198.0.96:5000
+#  auth_port = 35357
+  auth_protocol = http
+  admin_tenant_name = service
+  admin_user = neutron
+  admin_password = openstack1
+
+  [database]
+  connection = mysql://neutron_dbu:openstack1@localhost/neutron
+
+
+// 5.60. Modifying /etc/neutron/plugins/ml2/ml2_conf.ini 
+$ sudo vi /etc/neutron/plugins/ml2/ml2_conf.ini 
+
+[ml2]
+type_drivers = gre
+tenant_network_types = gre
+mechanism_drivers = openvswitch
+
+[ml2_type_gre]
+tunnel_id_ranges = 1:1000
+
+[securitygroup]
+firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
+enable_security_group = True
+
+
+// 5.61. Restarting Neutron
+$ sudo service neutron-server restart
+
+# log file: sudo vi  /var/log/neutron/server.log
+# log file: sudo vi /var/log/upstart/neutron-server.log 
+# Check if :9696 is being listend
+#  sudo netstat -peanut | grep "9696" 
+
+/************
+** 5.5. Deploying the Compute (Nova) service 
+*************/
+$ mysql --user=root -p
+mysql> CREATE DATABASE nova;
+mysql> GRANT ALL ON nova.* TO 'nova_dbu'@'localhost'  IDENTIFIED BY 'openstack1';
+mysql> GRANT ALL ON nova.* TO 'nova_dbu'@'%' IDENTIFIED BY 'openstack1';
+mysql> quit;
+
+// 5.63. Creating the nova user
+$ keystone user-create --name=nova --pass="openstack1" --email=nova@testabc1.com
+
+// 5.64. Assigning admin role to nova user in service tenant
+$ keystone user-role-add --user=nova --role=admin --tenant=service
+  
+  
+// 5.65. Checking role assignment
+$ keystone user-role-list --user=nova --tenant=service  
+
+// 5.66. Creating the Nova service
+$ keystone service-create --name=nova --type=compute \
+   --description="OpenStack Compute Service"
+
+// 5.67. Creating the Nova endpoint
+$ keystone endpoint-create --region RegionOne \
+ --service=nova \
+ --publicurl='http://104.198.0.96:8774/v2/$(tenant_id)s' \
+ --internalurl='http://10.138.0.3:8774/v2/$(tenant_id)s' \
+ --adminurl='http://10.138.0.3:8774/v2/$(tenant_id)s'
+
+// 5.68. Install Nova controller
+$ sudo apt-get -y install nova-api nova-cert nova-conductor nova-consoleauth \
+  nova-novncproxy nova-scheduler python-novaclient
+
+// 5.69. /etc/nova/nova.conf
+$ sudo vi /etc/nova/nova.conf
+[DEFAULT]
+rpc_backend = rabbit
+rabbit_host = 10.138.0.3
+rabbit_password = openstack1
+
+my_ip = 10.138.0.3
+vncserver_listen = 0.0.0.0
+vncserver_proxyclient_address = 0.0.0.0
+
+auth_strategy=keystone
+service_neutron_metadata_proxy = true
+neutron_metadata_proxy_shared_secret = openstack1
+
+network_api_class = nova.network.neutronv2.api.API
+neutron_url = http://10.138.0.3:9696
+neutron_auth_strategy = keystone
+neutron_admin_tenant_name = service
+neutron_admin_username = neutron
+neutron_admin_password = openstack1
+neutron_admin_auth_url =  http://10.138.0.3:35357/v2.0
+linuxnet_interface_driver = nova.network.linux_net.LinuxOVSInterfaceDriver
+firewall_driver = nova.virt.firewall.NoopFirewallDriver
+security_group_api = neutron
+
+[database]
+connection = mysql://nova_dbu:openstack1@localhost/nova
+
+[keystone_authtoken]
+auth_uri = http://10.138.0.3:35357
+admin_tenant_name = service
+admin_password = openstack1
+auth_protocol = http
+admin_user = nova
+
+// 5.70. Executing nova-manage
+$ sudo nova-manage db sync
+
+// 5.71. Restarting services
+$ cd /usr/bin/; for i in $( ls nova-* ); \
+ do sudo service $i restart; done
+
+// 5.72. Listing Nova services
+$ sudo nova-manage service list
+
+# log file: /var/log/nova/. 
+#    The format for the log is *service name*.log
+
+/************
+** 5.6. Deploying the Dashboard (Horizon) service 
+*************/
+
+// 5.73. Installing Horizon
+$ sudo apt-get install -y openstack-dashboard memcached python-memcache
+
+# Check:  http://104.198.0.96/horizon
+# log: /var/log/apache2/error.log
+
+// 5.74. Enabling debugging in Horizon 
+$ sudo vi /usr/share/openstack-dashboard/openstack_dashboard/local/local_settings.py
+
+#DEBUG = False
+DEBUG = True
+
+$ sudo service apache2 restart
+
+# err log: /var/log/apache2/error.log.
+
+$ sudo apt-get -y remove --purge openstack-dashboard-ubuntu-theme
+$ sudo service apache2 restart
