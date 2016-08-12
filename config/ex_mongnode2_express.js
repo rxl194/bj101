@@ -23,7 +23,7 @@ module.exports = function(db, wagner) {
   var server = http.createServer(app);
   
   app.use(morgan('dev'));
-  app.use(multer({ dest: path.join(__dirname, './public/upload/temp')}));
+  app.use(multer({ dest: path.join(__dirname, './public/cex/mongnode2/upload/temp')}));
 
   // Use the 'body-parser' and 'method-override' middleware functions
   app.use(bodyParser.urlencoded({

@@ -4,3 +4,4 @@ run_gae_server
 test_node
 dump
 dump.*
+public/cex/mongnode2/upload/*
