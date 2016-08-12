@@ -2,7 +2,8 @@
 'use strict';
 
 var fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    sidebar = require('../helpers/ex_mongnode2.sidebar.helper');
 
 // Create a new 'index' controller method
 exports.index = function(req, res) {
@@ -25,7 +26,7 @@ exports.index = function(req, res) {
         comment:    'This is a test comment...',
         timestamp:  Date.now()
       },{
-      image_id:   1,
+        image_id:   1,
         email:      'test@testing.com',
         name:       'Test Tester',
         gravatar:   'http://www.gravatar.com/avatar/9a99fac7b524fa443560ec7b5ece5ca1?d=monsterid&s=45',
@@ -35,7 +36,9 @@ exports.index = function(req, res) {
     ]
   };  
 
-  res.render('image', viewModel);
+  sidebar(viewModel, function(viewModel) {
+    res.render('image', viewModel);
+  });
 };
 
 exports.create = function(req, res) {

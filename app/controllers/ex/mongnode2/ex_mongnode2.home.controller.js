@@ -1,6 +1,8 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
+var sidebar = require('../helpers/ex_mongnode2.sidebar.helper');
+
 // Create a new 'index' controller method
 exports.index = function(req, res) {
   var myTitle = 'Ex Mongnode2 SocialSite HomeCtrl';
@@ -51,7 +53,9 @@ exports.index = function(req, res) {
   };  
 
   // Use the 'response' object to render the 'index' view with a 'title' and 'userFullName' properties
-  res.render('index', viewModel);
-  // res.send('The home:index controller');
+  sidebar(viewModel, function(viewModel) {
+    res.render('index', viewModel);
+  });
+
 };
 
